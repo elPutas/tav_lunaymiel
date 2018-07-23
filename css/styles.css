@@ -147,6 +147,20 @@ body{
     letter-spacing: 10px;
     font-size: 25pt;
 }
+
+.textWithIcon{
+    width: 20%;
+    margin-left: 20px;
+    text-align: justify;
+    margin-right: 20px;
+}
+
+.subtitle{
+     margin-top: 50px;
+     color: #BDA16B;
+     letter-spacing: 7px;
+     font-size: 16pt;
+}
 .titleContact{
 
     font-family: 'latoblack' !important;
@@ -170,13 +184,14 @@ body{
     letter-spacing: 1px;
 }
 
-#section2{
+.bgSection2{
     background-image: url("../img/h2.png");
     background-repeat: no-repeat;
     background-size: contain;
     padding-top: 100px;
     height: 1024px;
 }
+
 
 .containerSection{
     width: 80% !important;
@@ -295,6 +310,16 @@ hr {
 
 }
 
+.centerSmall{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.fixCenter{
+    margin-left: 100px !important;
+}
+
 .btnContact{
     margin-bottom: 20px !important;
     margin-left: 50px !important;
@@ -323,7 +348,7 @@ hr {
 }
 
 @media (max-width: 574px) {
-    #section2 {
+    .bgSection2 {
         background-image: url(../img/h2.png);
         background-repeat: no-repeat;
         background-size: cover;
@@ -355,6 +380,8 @@ hr {
     .imgFooter{
         margin-top: 170px;
     }
+
+
 
 }
 
