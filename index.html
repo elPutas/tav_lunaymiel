@@ -4,11 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-functions.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="fonts/stylesheet.css" type="text/css" charset="utf-8" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <title>LUNA Y MIEL</title>
 </head>
@@ -21,7 +29,7 @@
             <div class="container">
                 <a class="offset-btn p-2" href="#init">INICIO</a>
                 <a class="offset-btn p-2" href="#section2">DESTINO</a>
-                <img src="img/logo.png" width="248" height="144" alt="">
+                <img id="logo_img" src="" width="248" height="144" alt="">
                 <a class="offset-btn p-2 " href="#section3">COMO FUNCIONA</a>
                 <a class="offset-btn p-2" href="#section4">CONTACTO</a>
             </div>
@@ -36,7 +44,7 @@
                 <div class="container">
                     <a class="nav-sm-md-btn p-2" href="#init">INICIO</a>
                     <a class="nav-sm-md-btn p-2" href="#section2">DESTINO</a>
-                    <img src="img/logo.png" width="104" height="50" alt="">
+                    <img id="logo_img_m" src="" width="104" height="50" alt="">
                     <a class="nav-sm-md-btn p-2" href="#section3">COMO FUNCIONA</a>
                     <a class="nav-sm-md-btn p-2" href="#section4">CONTACTO</a>
                 </div>
@@ -48,7 +56,7 @@
     <!-- HEADER XS -->
     <nav id="navXS" class="navbar fixed-top navbar-light navbar-toggleable-md d-block d-sm-none bgColorBarHeader-xs">
 
-        <div class="row">
+        <div class="row" style="flex-wrap: nowrap;margin-right: 5px;">
 
             <div class="col-2">
                 <button class="navbar-toggler visible-xs mx-auto order-0" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,7 +69,7 @@
             </div>
 
             <div class="col-2">
-                <button >
+                <button style="-webkit-appearance: none;border-radius: 0;border: 0;" >
                     <span class="glyphicon glyphicon-earphone iconHeader-xs-phone"></span>
                 </button>
             </div>
@@ -79,7 +87,7 @@
                             <a class="nav-link ml-3 menuBtnHeader-xs" href="#section3">COMO FUNCIONA<hr></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link ml-3 menuBtnHeader-xs" href="#section4">CONTACTO<hr></a>
+                            <a class="nav-link ml-3 menuBtnHeader-xs" href="#section4_help">CONTACTO<hr></a>
                         </li>
                     </ul>
 
@@ -101,35 +109,22 @@
 
 
     <!-- QUIENES SOMOS -->
-    <img class="img-fluid" src="img/h1.png">
+    <img id="header_img" class="img-fluid" src="">
 
     <div class="container" id="section1">
 
-            <div class="row p-xl-5 p-xs-1" >
+            <div class="row p-xl-5 p-xs-1">
                 <div class="col-md-5 col-xs-12">
-                    <h1 class="title">¿QUIENES SOMOS?</h1>
-                    <p class="ml-xs-3 bodyText ml-md-4 ml-xl-5">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis
-                        nostrud exercitation ullamco laboris nisi
-                        ut aliquip ex ea commodo consequat.
-                        <br>
-                        <br>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        nostrud exercitation ullamco laboris nisi
-                        ut aliquip ex ea commodo consequat.
-                        <br>
-                        <br>
-                        Nostrud exercitation ullamco laboris nisi
-                        ut aliquip ex ea commodo consequat.
+                    <h1 id="tit_sec_1" class="title"></h1>
+                    <p id="body_sec_1" class="ml-xs-3 bodyText ml-md-4 ml-xl-5">
+
                     </p>
                 </div>
                 <div class="justify-content-center col-md-3 mt-5 col-xs-12  d-xs-block d-sm-block d-md-none">
-                    <img class="img-fluid" src="img/img1_xs.png" >
+                    <img id="img_sec_1_m" class="img-fluid" src="" >
                 </div>
                 <div class="justify-content-center col-md-5 mt-5 col-xs-12 d-none d-xl-block d-md-block d-sm-none d-xs-none">
-                    <img class="img-fluid" src="img/img1.png">
+                    <img id="img_sec_1" class="img-fluid" src="">
                 </div>
             </div>
 
@@ -137,178 +132,25 @@
 
 
     <!-- DESTINOS -->
-    <div class="container-fluid bgSection2" id="section2">
+    <div class="container-fluid bgSection2" >
 
 
-        <div class="container ">
+        <div class="container " id="section2">
             <div class="containerSection d-none d-md-block"></div>
-            <div class="row ">
+            <div class="row">
 
                 <div class="col-xl-6 col-md-6 col-xs-12">
                     <!--Carousel Wrapper-->
-                    <div id="myCarousel" class="carousel slide carousel-multi-item carousel-multi-item-2 d-none d-sm-block " data-ride="carousel">
+                    <div id="myCarousel" class="carousel slide carousel-multi-item carousel-multi-item-2 " data-ride="carousel" >
 
                         <!--Slides-->
-                        <div class="carousel-inner marginContainer" role="listbox">
-
-                            <!--First slide-->
+                        <div id="carouselContainer" class="carousel-inner marginContainer" role="listbox">
                             <div class="carousel-item active">
-
-                                <div class="row ">
-                                    <div class="col-4 ">
-                                        <div class="card mb-3">
-                                            <div class="carousel-caption over-carrousel bg-carrousel">
-                                                <h6 style="margin-top:  40px;">SANTORINI</h6>
-                                                <p style="font-size:  10pt;margin-top:  -5px;">GRECIA</p>
-                                            </div>
-                                            <img class="img-fluid" src="http://via.placeholder.com/290x270" >
-                                        </div>
-
-                                        <div class="card ">
-                                            <div class="carousel-caption over-carrousel bg-carrousel">
-                                                <h6 style="margin-top:  40px;">SANTORINI</h6>
-                                                <p style="font-size:  10pt;margin-top:  -5px;">GRECIA</p>
-                                            </div>
-                                            <img class="img-fluid" src="http://via.placeholder.com/290x270" >
-                                        </div>
-                                    </div>
-
-                                    <div class="col-4 ">
-                                        <div class="card mb-3">
-                                            <div class="carousel-caption over-carrousel bg-carrousel">
-                                                <h6 style="margin-top:  40px;">SANTORINI</h6>
-                                                <p style="font-size:  10pt;margin-top:  -5px;">GRECIA</p>
-                                            </div>
-                                            <img class="img-fluid" src="http://via.placeholder.com/290x270" >
-                                        </div>
-                                        <div class="card ">
-                                            <div class="carousel-caption over-carrousel bg-carrousel">
-                                                <h6 style="margin-top:  40px;">SANTORINI</h6>
-                                                <p style="font-size:  10pt;margin-top:  -5px;">GRECIA</p>
-                                            </div>
-                                            <img class="img-fluid" src="http://via.placeholder.com/290x270" >
-                                        </div>
-                                    </div>
-                                        <div class="col-4 ">
-                                        <div class="card mb-3">
-                                            <div class="carousel-caption over-carrousel bg-carrousel">
-                                                <h6 style="margin-top:  40px;">SANTORINI</h6>
-                                                <p style="font-size:  10pt;margin-top:  -5px;">GRECIA</p>
-                                            </div>
-                                            <img class="img-fluid" src="http://via.placeholder.com/290x270" >
-                                        </div>
-                                        <div class="card ">
-                                            <div class="carousel-caption over-carrousel bg-carrousel">
-                                                <h6 style="margin-top:  40px;">SANTORINI</h6>
-                                                <p style="font-size:  10pt;margin-top:  -5px;">GRECIA</p>
-                                            </div>
-                                            <img class="img-fluid" src="http://via.placeholder.com/290x270" >
-                                        </div>
-                                    </div>
-                                </div>
-
+                                <ul id="slidesCarrousel_active" class="list-inline">
+                                </ul>
                             </div>
-                            <!--/.First slide-->
 
-                            <!--Second slide-->
-                            <div class="carousel-item">
 
-                                <div class="row ">
-                                    <div class="col-4 ">
-                                        <div class="card mb-3">
-                                            <div class="carousel-caption over-carrousel bg-carrousel">
-                                                <h6 style="margin-top:  40px;">SANTORINI</h6>
-                                                <p style="font-size:  10pt;margin-top:  -5px;">GRECIA</p>
-                                            </div>
-                                            <img class="img-fluid" src="http://via.placeholder.com/290x270" >
-                                        </div>
-                                        <div class="card ">
-                                            <img class="img-fluid" src="http://via.placeholder.com/290x270" >
-                                        </div>
-                                    </div>
-
-                                    <div class="col-4 ">
-                                        <div class="card mb-3">
-                                            <div class="carousel-caption over-carrousel bg-carrousel">
-                                                <h6 style="margin-top:  40px;">SANTORINI</h6>
-                                                <p style="font-size:  10pt;margin-top:  -5px;">GRECIA</p>
-                                            </div>
-                                            <img class="img-fluid" src="http://via.placeholder.com/290x270" >
-                                        </div>
-                                        <div class="card ">
-                                            <img class="img-fluid" src="http://via.placeholder.com/290x270" >
-                                        </div>
-                                    </div>
-                                    <div class="col-4 ">
-                                        <div class="card mb-3">
-                                            <div class="carousel-caption over-carrousel bg-carrousel">
-                                                <h6 style="margin-top:  40px;">SANTORINI</h6>
-                                                <p style="font-size:  10pt;margin-top:  -5px;">GRECIA</p>
-                                            </div>
-                                            <img class="img-fluid" src="http://via.placeholder.com/290x270" >
-                                        </div>
-                                        <div class="card ">
-                                            <div class="carousel-caption over-carrousel bg-carrousel">
-                                                <h6 style="margin-top:  40px;">SANTORINI</h6>
-                                                <p style="font-size:  10pt;margin-top:  -5px;">GRECIA</p>
-                                            </div>
-                                            <img class="img-fluid" src="http://via.placeholder.com/290x270" >
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <!--/.Second slide-->
-
-                            <!--Third slide-->
-                            <div class="carousel-item">
-
-                                <div class="row ">
-                                    <div class="col-4 ">
-                                        <div class="card mb-3">
-                                            <div class="carousel-caption over-carrousel bg-carrousel">
-                                                <h6 style="margin-top:  40px;">SANTORINI</h6>
-                                                <p style="font-size:  10pt;margin-top:  -5px;">GRECIA</p>
-                                            </div>
-                                            <img class="img-fluid" src="http://via.placeholder.com/290x270" >
-                                        </div>
-                                        <div class="card ">
-                                            <img class="img-fluid" src="http://via.placeholder.com/290x270" >
-                                        </div>
-                                    </div>
-
-                                    <div class="col-4 ">
-                                        <div class="card mb-3">
-                                            <div class="carousel-caption over-carrousel bg-carrousel">
-                                                <h6 style="margin-top:  40px;">SANTORINI</h6>
-                                                <p style="font-size:  10pt;margin-top:  -5px;">GRECIA</p>
-                                            </div>
-                                            <img class="img-fluid" src="http://via.placeholder.com/290x270" >
-                                        </div>
-                                        <div class="card ">
-                                            <img class="img-fluid" src="http://via.placeholder.com/290x270" >
-                                        </div>
-                                    </div>
-                                    <div class="col-4 ">
-                                        <div class="card mb-3">
-                                            <div class="carousel-caption over-carrousel bg-carrousel">
-                                                <h6 style="margin-top:  40px;">SANTORINI</h6>
-                                                <p style="font-size:  10pt;margin-top:  -5px;">GRECIA</p>
-                                            </div>
-                                            <img class="img-fluid" src="http://via.placeholder.com/290x270" >
-                                        </div>
-                                        <div class="card ">
-                                            <div class="carousel-caption over-carrousel bg-carrousel">
-                                                <h6 style="margin-top:  40px;">SANTORINI</h6>
-                                                <p style="font-size:  10pt;margin-top:  -5px;">GRECIA</p>
-                                            </div>
-                                            <img class="img-fluid" src="http://via.placeholder.com/290x270" >
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <!--/.Third slide-->
 
                         </div>
                         <!--/.Slides-->
@@ -316,7 +158,7 @@
                         <!--Controls-->
                         <div class="row">
                             <div class="col-md-10 col-xs-8">
-                                <p class="controls-custom">01/03</p>
+                                <p id="counterCarousel" class="controls-custom"></p>
                             </div>
                             <div class="col-md-2 col-xs-4">
                                 <div class="controls-custom">
@@ -336,39 +178,13 @@
 
                 <div class="col-xl-6 col-md-6 col-xs-12">
 
-                    <h2 class="title">DESTINOS</h2>
-                    <p class="ml-lg-5 ml-xs-0 bodyText">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis
-                        nostrud exercitation ullamco laboris nisi
-                        ut aliquip ex ea commodo consequat.
-                        <br>
-                        <br>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore
-                        magna aliqua. Ut enim ad minim veniam, quis
-                        nostrud exercitation ullamco laboris nisi
-                        ut aliquip ex ea commodo consequat.
-                        <br>
-                        <br>
-                        Nostrud exercitation ullamco laboris nisi
-                        ut aliquip ex ea commodo consequat.
+                    <h2 id="title_sec_2" class="title"></h2>
+                    <p id="body_carrousel" class="ml-lg-5 ml-xs-0 bodyText">
+
                     </p>
 
-                    <ul class="nav nav-pills nav-fill navSections2">
-                        <li class="nav-item">
-                            <a class="nav-link ">AMERICA</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link ">CARIBE</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active">EUROPA</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link ">ASIA</a>
-                        </li>
+                    <ul id="btns_cont" class="nav nav-pills nav-fill navSections2">
+
                     </ul>
                 </div>
 
@@ -376,101 +192,11 @@
                 <div class="row ">
                     <div class="col-12">
                         <!--Carousel Wrapper-->
-                        <div id="myCarouselSM" class="carousel slide carousel-multi-item carousel-multi-item-2 d-block d-sm-none" data-ride="carousel">
+                        <div id="myCarouselSM" class="carousel slide carousel-multi-item carousel-multi-item-2 d-none" data-ride="carousel">
 
                             <!--Slides-->
                             <div class="carousel-inner marginContainer" role="listbox">
 
-                                <!--First slide-->
-                                <div class="carousel-item active">
-
-                                    <div class="row ">
-
-
-                                        <div class="col-6 ">
-                                            <div class="card mb-3">
-                                                <div class="carousel-caption bg-carrousel">
-                                                    <h6 style="margin-top:  40px;">SANTORINI</h6>
-                                                    <p style="font-size:  10pt;margin-top:  -5px;">GRECIA</p>
-                                                </div>
-                                                <img class="img-fluid" src="http://via.placeholder.com/290x270" >
-                                            </div>
-
-                                            <div class="card ">
-                                                <div class="carousel-caption bg-carrousel">
-                                                    <h6 style="margin-top:  40px;">SANTORINI</h6>
-                                                    <p style="font-size:  10pt;margin-top:  -5px;">GRECIA</p>
-                                                </div>
-                                                <img class="img-fluid" src="http://via.placeholder.com/290x270" >
-                                            </div>
-                                        </div>
-
-                                        <div class="col-6 ">
-                                            <div class="card mb-3">
-                                                <div class="carousel-caption bg-carrousel">
-                                                    <h6 style="margin-top:  40px;">SANTORINI</h6>
-                                                    <p style="font-size:  10pt;margin-top:  -5px;">GRECIA</p>
-                                                </div>
-                                                <img class="img-fluid" src="http://via.placeholder.com/290x270" >
-                                            </div>
-                                            <div class="card ">
-                                                <div class="carousel-caption bg-carrousel">
-                                                    <h6 style="margin-top:  40px;">SANTORINI</h6>
-                                                    <p style="font-size:  10pt;margin-top:  -5px;">GRECIA</p>
-                                                </div>
-                                                <img class="img-fluid" src="http://via.placeholder.com/290x270" >
-                                            </div>
-                                        </div>
-
-
-
-                                    </div>
-
-                                </div>
-                                <!--/.First slide-->
-
-                                <!--Second slide-->
-                                <div class="carousel-item">
-
-                                    <div class="row ">
-
-                                        <div class="col-6 ">
-                                            <div class="card mb-3">
-                                                <div class="carousel-caption bg-carrousel">
-                                                    <h6 style="margin-top:  40px;">SANTORINI</h6>
-                                                    <p style="font-size:  10pt;margin-top:  -5px;">GRECIA</p>
-                                                </div>
-                                                <img class="img-fluid" src="http://via.placeholder.com/290x270" >
-                                            </div>
-
-                                            <div class="card ">
-                                                <div class="carousel-caption bg-carrousel">
-                                                    <h6 style="margin-top:  40px;">SANTORINI</h6>
-                                                    <p style="font-size:  10pt;margin-top:  -5px;">GRECIA</p>
-                                                </div>
-                                                <img class="img-fluid" src="http://via.placeholder.com/290x270" >
-                                            </div>
-                                        </div>
-
-                                        <div class="col-6 ">
-                                            <div class="card mb-3">
-                                                <div class="carousel-caption bg-carrousel">
-                                                    <h6 style="margin-top:  40px;">SANTORINI</h6>
-                                                    <p style="font-size:  10pt;margin-top:  -5px;">GRECIA</p>
-                                                </div>
-                                                <img class="img-fluid" src="http://via.placeholder.com/290x270" >
-                                            </div>
-                                            <div class="card ">
-                                                <div class="carousel-caption bg-carrousel">
-                                                    <h6 style="margin-top:  40px;">SANTORINI</h6>
-                                                    <p style="font-size:  10pt;margin-top:  -5px;">GRECIA</p>
-                                                </div>
-                                                <img class="img-fluid" src="http://via.placeholder.com/290x270" >
-                                            </div>
-                                        </div>
-
-                                </div>
-                                <!--/.Second slide-->
 
 
                             </div>
@@ -479,26 +205,6 @@
                             <!--Controls-->
                             <div class="container">
 
-
-                                    <ul >
-
-                                        <li class="list-inline-item">
-                                            <a class="black-text col-3" href="#myCarouselSM" data-slide="prev">
-                                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                            </a>
-                                        </li>
-
-                                        <li class="list-inline-item">
-                                            <div class="col-3">
-                                                <p class="controls-custom indicator-sm">01/03</p>
-                                            </div>
-                                        </li>
-                                        <li class="list-inline-item">
-                                            <a class="black-text col3" href="#myCarouselSM" data-slide="next">
-                                                <span class="carousel-control-next-icon " aria-hidden="true"></span>
-                                            </a>
-                                        </li>
-                                    </ul>
 
 
 
@@ -514,34 +220,18 @@
 
     <!-- COMO FUNCIONA-->
     <div class="container" id="section3">
-        <h2 class="title titleSection3">¿COMO FUNCIONA?</h2>
-        <p class="bodyText bodySection3">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore
-            magna aliqua. Ut enim ad minim veniam, quis
-            nostrud exercitation ullamco laboris nisi
-            ut aliquip ex ea commodo consequat.
+        <h2 id="title_sec_3" class="title titleSection3"></h2>
+        <p id="body_sec_3" class="bodyText bodySection3">
+
         </p>
 
-        <div class="row justify-content-center">
+        <div id="containerInstructions" class="row justify-content-center">
 
-            <div class="col-xl-3 col-md-5 col-xs-12 textCenter">
-                <img src="img/ico_1.png">
-            </div>
-            <div class="col-xl-3 col-md-5 col-xs-12 textCenter">
-                <img src="img/ico_2.png">
-            </div>
 
-            <div class="col-xl-3 col-md-5 col-xs-12 textCenter">
-                <img src="img/ico_3.png">
-            </div>
-            <div class="col-xl-3 col-md-5 col-xs-12 textCenter">
-                <img src="img/ico_4.png">
-            </div>
         </div>
 
-        <div class="row justify-content-center">
-            <button  class="btn btn-primary btnSoon">PRÓXIMAMENTE</button>
+        <div id="section4_help" class="row justify-content-center">
+            <button  class="btn btn-primary btnSoon" disabled>PRÓXIMAMENTE</button>
         </div>
     </div>
 
@@ -552,9 +242,9 @@
 
     <!-- CONTACTO-->
 
-    <div class="container" id="section4">
+    <div class="container" >
         <div class="contactBox">
-            <p class="titleContact">CONTACTO</p>
+            <p id="section4" class="titleContact">CONTACTO</p>
 
             <p class="bodyContact">¡Hola! Mi nombre es<input type="text" placeholder="(Tu nombre)">,<input type="text" placeholder="(Tu apellido)"> me puedes contactar en <input type="text" placeholder="(Tu correo)"> o llamar al <input type="text" placeholder="(Tu teléfono)"> me gustaría recibir más información acerca de sus planes. </p>
 
@@ -576,35 +266,49 @@
 
 
     </div>
-    <img class="img-fluid imgFooter" src="img/foot.jpg">
+    <img id="img_foot" class="img-fluid imgFooter" src="">
     <div class="container centerFooter">
         <div id="footer" class="row">
 
 
 
-            <div class="col-sm-4 col-xs-12">
+            <div class="col-sm-3 col-xs-12">
                 <p>LLAMA YA</p>
-                <p>(+57) 300 609 6960</p>
-                <p>contacto@lunaymiel.com</p>
-                <p>Carrera 15A # 152A - 10 Bogotá Colombia</p>
+                <a style="font-size:  12pt; display:-webkit-inline-box" class="fa fa-phone"><p id="foot_phone">></p></a>
+                <br>
+                <a style="font-size:  12pt; display:-webkit-inline-box" class="fa fa-envelope">  <p id="foot_mail"></p></a>
+                <br>
+                <a style="font-size:  18pt; display:-webkit-inline-box" class="fa fa-map-marker">  <p id="foot_address"></p></a>
+
             </div>
 
-            <div class="col-sm-4 col-xs-12">
-                <p>PREGUNTAS FRECUENTES</p>
-                <p>TÉRMINOS Y CONDIIONES</p>
-                <p>POLÍTICA DE DATOS</p>
+            <div class="col-sm-3 col-xs-12">
+                <p><a href="faq.html" target="_blank">PREGUNTAS FRECUENTES</a></p>
+                <p><a href="tyc.html" target="_blank">TÉRMINOS Y CONDIIONES</a></p>
+                <p><a href="policy.html" target="_blank">POLÍTICA DE DATOS</a></p>
             </div>
 
-            <div class="col-sm-4 d-none d-sm-block">
-                <p class="bodyTextFooter">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua. Ut enim ad minim veniam
+            <div class="col-sm-6 d-none d-sm-block">
+                <p id="foot_copy" class="bodyTextFooter">
                 </p>
+
+                <ul class="list-inline">
+                    <li><a href="#init">INICIO</a></li>
+                    <li><a href="#section2">DESTINO</a></li>
+                    <li><a href="#section3">COMO FUNCIONA</a></li>
+                    <li><a href="#section4">CONTACTO</a></li>
+                </ul>
+
+                <ul id="social_btns" class="list-inline">
+                    <li><a id="link_tw" class="fa fa-twitter" href=""></a></li>
+                    <li><a id="link_fb" class="fa fa-facebook" href=""></a></li>
+                    <li><a id="link_in" class="fa fa-instagram" href=""></a></li>
+                </ul>
             </div>
 
 
         </div>
-        <p class="footerText">Copyright © – Luna y Miel  All Rights Reserved,</p>
+        <p id="foot_copyright" class="footerText"></p>
     </div>
 
 
@@ -613,6 +317,138 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 <script>
+
+
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyACvxmQZih9JPc_z5Kb0h-IAvcnGwOBugM",
+        authDomain: "lunaymiel-cms.firebaseapp.com",
+        databaseURL: "https://lunaymiel-cms.firebaseio.com",
+        projectId: "lunaymiel-cms",
+        storageBucket: "lunaymiel-cms.appspot.com",
+        messagingSenderId: "671142506834"
+    };
+
+
+    firebase.initializeApp(config);
+    var db = firebase.firestore();
+
+    const settings = {/* your settings... */ timestampsInSnapshots: true};
+    db.settings(settings);
+
+    var docRefGen = db.collection('general_info').doc("info")
+    var docRefSec_1 = db.collection('seccion1').doc("info")
+    var docRefSec_2 = db.collection('seccion2')
+    var docRefSec_3 = db.collection('seccion3').doc("info")
+    var docRefSec_ins = db.collection('instrucciones')
+    var docRefFooter = db.collection('footer_info').doc("info")
+
+    var justOnce = true
+    var just3 = 0
+    var justOnceInside = true
+    var oldDiv
+
+    function onChangeCont(_this)
+    {
+        console.log(_this)
+
+        $(_this).addClass("active")
+        if(oldDiv)
+            $(oldDiv).removeClass("active")
+
+        oldDiv = _this
+
+        console.log("width",$(window).width() )
+
+        $('#counterCarousel').html('01/01')
+        $('#slidesCarrousel_active').empty()
+        $('#slidesCarrousel').empty()
+        docRefSec_2.doc(_this.dataset.capture).get().then(function(doc) {
+            if (doc.exists)
+            {
+                var docRef = db.collection('seccion2').doc(_this.dataset.capture).collection('items')
+                just3 = 0
+
+
+                //load carrousel
+                docRef.get().then(function(querySnapshot)
+                {
+                    querySnapshot.forEach(function(doc)
+                    {
+                        // doc.data() is never undefined for query doc snapshots
+                        if(doc.exists)
+                        {
+                          console.log(doc.id, " => ", doc.data());
+
+                          var _title = doc.data().title
+                          var _subtitle = doc.data().subTitle
+                          var _link = doc.data().link
+
+                          var _div
+
+                          var _storageRef = firebase.storage().ref("seccion2/");
+                          _storageRef.child(doc.data().img).getDownloadURL()
+                              .then(function(url) {
+
+                            _div =
+                                '                                     <li><a href=page_in.html?id='+_link+'>' +
+                                '                                           <div class="card mb-3" style="width: 160px">\n' +
+                                '                                            <div class="carousel-caption over-carrousel bg-carrousel">\n' +
+                                '                                                <h6 style="margin-top:  40px;">'+_title+'</h6>\n' +
+                                '                                                <p style="font-size:  10pt;margin-top:  -5px;">'+_subtitle+'</p>\n' +
+                                '                                            </div>\n' +
+                                '                                            <img class="img-fluid" src="'+url+'" >\n' +
+                                '                                        </div>' +
+                                '                                     </a></li>'
+
+
+                                var howMany = 6
+                                if($(window).width() < 573)
+                                  howMany = 4
+                                if(just3<howMany)
+                                {
+                                    $('#slidesCarrousel_active').append(_div)
+                                    justOnce = false
+                                }else{
+
+                                  if(justOnceInside)
+                                  {
+                                    var _newDiv =
+                                    '<div class="carousel-item">'+
+                                      '<ul id="slidesCarrousel" class="list-inline">'+
+                                      '</ul>'+
+                                    '</div>'
+
+                                    $('#carouselContainer').append(_newDiv)
+                                    justOnceInside = false
+                                  }
+
+                                  $('#slidesCarrousel').append(_div)
+
+                                }
+
+                            just3++
+                            $('#counterCarousel').html('01/0'+(Math.round(just3/howMany)+1))
+                          })
+                        }
+
+
+                    });
+
+
+                });
+
+                $('#body_carrousel').html(doc.data().body)
+
+
+            }else {
+                console.log("No such document!");
+            }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+        });
+    }
+
     $(function()
     {
         $('#myCarousel').carousel({
@@ -625,24 +461,257 @@
         });
 
 
+        var totalItems = $('#myCarousel .carousel-item').length + 1;
+        var currentIndex = $('div.active').index() + 1;
+
+        $('#myCarousel').on('slid.bs.carousel', function() {
+            currentIndex = $('div.active').index() + 1;
+           $('#counterCarousel').html('0'+currentIndex+'/0'+totalItems+'');
+        });
+
+
+
+
+
+        //load seccion1
+        docRefSec_1.get().then(function(doc) {
+            if (doc.exists)
+            {
+                var storageRefSec1 = firebase.storage().ref("seccion1");
+
+                //console.log(doc.data().title)
+                $('#tit_sec_1').html(doc.data().title);
+                $('#body_sec_1').html(doc.data().body);
+
+                storageRefSec1.child(doc.data().imgM).getDownloadURL()
+                    .then(function(url) {
+                        $('#img_sec_1_m').attr("src",url);
+                    })
+
+                storageRefSec1.child(doc.data().imgD).getDownloadURL()
+                    .then(function(url) {
+                        $('#img_sec_1').attr("src",url);
+                    })
+            }else {
+                console.log("No such document!");
+            }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+        });
+
+
+
+
+        var _justOnceC = true
+        //load seccion2
+        docRefSec_2.get().then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                // doc.data() is never undefined for query doc snapshots
+                //console.log(doc.id, " => ", doc.data());
+                var myId = doc.id
+                var _title = doc.data().title
+
+                var docRef = db.collection('seccion2').doc(myId).collection('items')
+                just3 = 0
+
+
+                if(_justOnceC)
+                {
+
+
+                  //load carrousel
+                  docRef.get().then(function(querySnapshot)
+                  {
+                      querySnapshot.forEach(function(doc)
+                      {
+                          // doc.data() is never undefined for query doc snapshots
+                          console.log(doc.id, " => ", doc.data());
+
+                          var _title = doc.data().title
+                          var _subtitle = doc.data().subTitle
+                          var _link = doc.data().link
+
+                          var _div
+
+                          var _storageRef = firebase.storage().ref("seccion2/");
+                          _storageRef.child(doc.data().img).getDownloadURL()
+                              .then(function(url) {
+
+
+
+
+
+                          _div =
+                              '                                     <li><a href=page_in.html?id='+_link+'>' +
+                              '                                           <div class="card mb-3" style="width: 160px">\n' +
+                              '                                            <div class="carousel-caption over-carrousel bg-carrousel">\n' +
+                              '                                                <h6 style="margin-top:  40px;">'+_title+'</h6>\n' +
+                              '                                                <p style="font-size:  10pt;margin-top:  -5px;">'+_subtitle+'</p>\n' +
+                              '                                            </div>\n' +
+                              '                                            <img class="img-fluid" src="'+url+'" >\n' +
+                              '                                        </div>' +
+                              '                                     </a></li>'
+
+                              var howMany = 6
+                              if($(window).width() < 573)
+                                howMany = 4
+                              if(just3<howMany)
+                              {
+                                  $('#slidesCarrousel_active').append(_div)
+                                  justOnce = false
+                              }else{
+
+                                if(justOnceInside)
+                                {
+                                  var _newDiv =
+                                  '<div class="carousel-item">'+
+                                    '<ul id="slidesCarrousel" class="list-inline">'+
+                                    '</ul>'+
+                                  '</div>'
+
+                                  $('#carouselContainer').append(_newDiv)
+                                  justOnceInside = false
+                                }
+                                  $('#slidesCarrousel').append(_div)
+                              }
+
+                              just3++
+                              $('#counterCarousel').html('01/0'+(Math.round(just3/howMany)+1))
+                          })
+                      });
+                  });
+
+                  $('#body_carrousel').html(doc.data().body)
+                  _justOnceC = false
+                }
+
+
+
+                var div = '<li class="nav-item">\n' +
+                    '                            <a data-capture="'+myId+'" onclick="onChangeCont(this)" class="nav-link ">'+_title+'</a>\n' +
+                    '                        </li>'
+
+                $("#btns_cont").append(div)
+
+
+            });
+        });
+
+
+
+        //load seccion3
+        docRefSec_3.get()
+            .then(function(doc) {
+                if (doc.exists)
+                {
+                    $('#title_sec_3').html(doc.data().title)
+                    $('#body_sec_3').html(doc.data().body)
+                } else {
+                    console.log("No such document!");
+                }
+            }).catch(function(error) {
+                console.log("Error getting document:", error);
+            })
+
+
+        //load instructions
+        docRefSec_ins.get().then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                // doc.data() is never undefined for query doc snapshots
+                //console.log(doc.id, " => ", doc.data());
+                var myId = doc.id
+                var _img = doc.data().img
+
+
+                $('#body_carrousel').html(doc.data().body)
+
+                var div = '<div class="col-xl-3 col-md-5 col-xs-12 textCenter">\n' +
+                    '                <img src="img/'+_img+'">\n' +
+                    '            </div>'
+
+                $("#containerInstructions").append(div)
+
+
+            });
+        });
+
+
+        //load footer
+        docRefFooter.get().then(function(doc){
+          if(doc.exists)
+          {
+            $("#foot_phone").text(doc.data().phone)
+            $("#foot_address").text(doc.data().address)
+            $("#foot_mail").text(doc.data().email)
+            $("#foot_copy").html(doc.data().copy)
+            $("#foot_copyright").html(doc.data().copyright)
+
+
+          }
+        })
+
+
+        //load general info
+        docRefGen.get().then(function(doc) {
+            if (doc.exists)
+            {
+                var storageRefHeader = firebase.storage().ref("header");
+                var storageRefLogo = firebase.storage().ref("logo");
+                var storageRefFoot = firebase.storage().ref("footer");
+
+                $('#title_sec_2').html(doc.data().titleSec2)
+
+                //console.log("storageRefHeader", doc.data().header)
+
+                storageRefFoot.child(doc.data().footer).getDownloadURL()
+                    .then(function(url) {
+                    $('#img_foot').attr("src",url);
+                })
+
+                storageRefHeader.child(doc.data().header).getDownloadURL()
+                    .then(function(url) {
+                    $('#header_img').attr("src",url);
+                })
+
+                storageRefLogo.child(doc.data().logo).getDownloadURL()
+                    .then(function(url) {
+                    $('#logo_img').attr("src",url);
+                    $('#logo_img_m').attr("src",url);
+                })
+
+                //$('#img_foot').attr("src","gs://lunaymiel-cms.appspot.com/footer/"+doc.data().footer);
+
+            } else {
+                console.log("No such document!");
+            }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+        });
+
+
 
 
 
         //nav animation
-        $("#nav a[href^='#']").on('click', function(e)
+        $("a[href*=\\#]:not([href=\\#])").click(function(e)
         {
-            // prevent default anchor click behavior
-            e.preventDefault();
+          if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'')
+              || location.hostname == this.hostname)
+          {
 
-            // store hash
-            var hash = this.hash;
+            var target = $(this.hash),
+            headerHeight = $("#nav").height() + 5; // Get fixed header height
 
-            // animate
-            $('html, body').animate({
-                scrollTop: $(hash).offset().top
-            }, 300, function(){
-                window.location.hash = hash;
-            });
+            target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+
+            if (target.length)
+            {
+              $('html,body').animate({
+                scrollTop: target.offset().top - headerHeight
+              }, 500);
+              return false;
+            }
+          }
         });
 
 

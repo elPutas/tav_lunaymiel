@@ -7,7 +7,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLUNAYMIEL</title>
+  <title>Admin_LUNAYMIEL</title>
+
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-messaging.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-functions.js"></script>
+
+
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -67,7 +76,7 @@ desired effect
     <!-- Logo -->
     <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini"><b>A</b>LM</span>
       <!-- logo for regular state and mobile devices -->
       <span class="logo-lg"><b>Admin</b>LUNA Y MIEL</span>
     </a>
@@ -103,10 +112,10 @@ desired effect
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">HEADER</li>
+        <li class="header">SECCIONES</li>
         <!-- Optionally, you can add icons to the links -->
         <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Index</span></a></li>
-        <li><a href="page_intern.html"><i class="fa fa-link"></i> <span>Internas</span></a></li>
+        <li><a href="pre_page_intern.html?id="><i class="fa fa-link"></i> <span>Internas</span></a></li>
         <li class="treeview">
           <a href="#"><i class="fa fa-link"></i> <span>Páginas genéricas</span>
             <span class="pull-right-container">
@@ -151,7 +160,7 @@ desired effect
 
                   <input type="file" id="img_h">
 
-                  <p class="help-block">primera imagen</p>
+                  <p id="oldImg_header" class="help-block">primera imagen</p>
                 </div>
               </div>
 
@@ -172,7 +181,7 @@ desired effect
 
                   <input type="file" id="img_logo">
 
-                  <p class="help-block">logo site</p>
+                  <p id="oldImg_logo" class="help-block">logo site</p>
                 </div>
               </div>
 
@@ -188,7 +197,7 @@ desired effect
       <!-- Section 1 -->
       <div class="box">
         <div class="box-header">
-          <input type="text" placeholder="¿Quienes somos?">
+          <input id="sec1_title" type="text" placeholder="¿Quienes somos?">
           <small>sección 1</small>
 
           <!-- tools box -->
@@ -201,9 +210,9 @@ desired effect
           <!-- /. tools -->
         </div>
         <!-- /.box-header -->
-        <div class="box-body pad">
+        <div id="sec1_body" class="box-body pad">
           <form>
-                <textarea class="textarea" placeholder="Place some text here"
+                <textarea id="sec1_body_txt" class="textarea" placeholder="Place some text here"
                           style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
           </form>
 
@@ -217,16 +226,16 @@ desired effect
           <div class="col-md-6">
             <div class="form-group">
 
-              <input type="file" id="img_s2_1">
+              <input type="file" id="img_s1_desk">
 
-              <p class="help-block">desktop</p>
+              <p id="oldImg_sec1" class="help-block">desktop</p>
             </div>
           </div>
 
           <div class="col-md-6">
             <div class="form-group">
-              <input type="file" id="img_s2_2">
-              <p class="help-block">mobile</p>
+              <input type="file" id="img_s1_mob">
+              <p id="oldImg_sec1_m" class="help-block">mobile</p>
             </div>
           </div>
         </div>
@@ -241,54 +250,27 @@ desired effect
 
 
 
-      <!-- Section 2 -->
+      <!--
       <div class="box">
         <div class="box-header">
 
-          <input type="text" placeholder="Destinos">
-          <small>sección 2</small>
-          <!-- tools box -->
+
           <div class="pull-right box-tools">
             <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
                     title="Collapse">
               <i class="fa fa-minus"></i></button>
 
           </div>
-          <!-- /. tools -->
+
         </div>
-        <!-- /.box-header -->
-        <div class="box-body pad">
+
+        <div id="sec2_body" class="box-body pad">
 
 
 
-          <!--CONTINENTE-->
+
           <div id="containerContinent">
-            <div class="box box-primary">
-              <div class="box-header with-border">
-                <h3 class="box-title">Continente</h3>
 
-                <div class="box-tools pull-right">
-                  <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                </div>
-                <!-- /.box-tools -->
-              </div>
-              <!-- /.box-header -->
-              <div class="box-body">
-                <div class="row">
-
-                  <div class="col-md-12">
-                    <input type="text" placeholder="Continente" style="margin-bottom:  20px;">
-                  </div>
-                  <div class="col-md-12">
-                  <textarea class="textarea" placeholder=""
-                            style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-
-                  </div>
-                </div>
-
-              </div>
-              <!-- /.box-body -->
-            </div>
           </div>
 
 
@@ -302,34 +284,8 @@ desired effect
 
 
 
-          <!--ITEM CARROUSEL-->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Item Carrusel</h3>
+          <div id="containerItemsContinent">
 
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-              <!-- /.box-tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div class="row">
-
-                <div class="col-md-6">
-                  <input type="file" id="img_c1">
-                </div>
-
-                <div class="col-md-6">
-                  <input type="text" class="text-fluid" id="img_c_t1" placeholder="Título">
-                  <input type="text" class="text-fluid" id="img_c_st1" placeholder="SubTítulo">
-                  <input type="text" class="text-fluid" id="img_c_l1" placeholder="Link">
-                </div>
-
-              </div>
-
-            </div>
-            <!-- /.box-body -->
           </div>
 
 
@@ -337,13 +293,41 @@ desired effect
 
 
 
-          <button type="submit" class="btn btn-primary"><li class="fa fa-plus"></li> Agregar item</button>
+          <button id="addItemCont_btn" type="submit" class="btn btn-primary"><li class="fa fa-plus"></li> Agregar item</button>
 
 
 
 
         </div>
       </div>
+          -->
+
+
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">Destinos</h3>
+          <br>
+          <input id="sec2_title" type="text" placeholder="Destinos">
+          <small>sección 2</small>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+          <table class="table table-bordered table-striped">
+            <tbody id="bodyTable_cont">
+              <tr>
+                <th style="width: 10px">#</th>
+                <th>Continentes</th>
+                <th style="width: 100px"></th>
+              </tr>
+            </tbody>
+          </table>
+        <button onclick="gotoNewCont()" type="button" class="btn btn-info pull-right"><i class="fa fa-plus"></i> Agregar continente</button>
+        </div>
+        <!-- /.box-body -->
+      </div>
+
+
+
 
 
 
@@ -353,7 +337,7 @@ desired effect
       <div class="box">
         <div class="box-header">
 
-          <input type="text" placeholder="Como funciona">
+          <input id="sec3_title" type="text" placeholder="Como funciona">
           <small>sección 3</small>
           <!-- tools box -->
           <div class="pull-right box-tools">
@@ -365,45 +349,32 @@ desired effect
           <!-- /. tools -->
         </div>
         <!-- /.box-header -->
-        <div class="box-body pad">
+        <div id="sec3_body" class="box-body pad">
 
 
 
-          <textarea class="textarea" placeholder=""
+          <textarea id="sec3_body_txt" class="textarea" placeholder=""
                     style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
 
 
-
-
-          <small>imágenes</small>
-
-
+          <table class="table table-bordered table-striped">
+            <tbody id="bodyTable_ins">
+            <tr>
+              <th>Imágenes instrucciones</th>
+              <th style="width: 50px"></th>
+            </tr>
+            </tbody>
+          </table>
 
 
           <!--ITEM INSTRUCCIONES-->
-          <div class="box box-primary">
-            <div class="box-header with-border">
-              <h3 class="box-title">Item Instrucciones</h3>
+          <div id="containerItemsInstructions">
 
-              <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-              </div>
-              <!-- /.box-tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div class="row">
-
-                <div class="col-md-12">
-                  <input type="file">
-                </div>
-              </div>
-
-            </div>
-            <!-- /.box-body -->
           </div>
 
-          <button type="submit" class="btn btn-primary"><li class="fa fa-plus"></li> Agregar item</button>
+
+          <input type="file" id="img_ins">
+
 
         </div>
       </div>
@@ -432,44 +403,44 @@ desired effect
 
           <div class="form-horizontal">
             <div class="form-group">
-              <label for="inputEmail1" class="col-sm-2 control-label">Teléfono</label>
+              <label for="phone_txt" class="col-sm-2 control-label">Teléfono</label>
 
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="inputEmail1" placeholder="Teléfono">
+                <input type="text" class="form-control" id="phone_txt" placeholder="Teléfono">
               </div>
             </div>
 
             <div class="form-group">
-              <label for="inputEmail2" class="col-sm-2 control-label">Email</label>
+              <label for="email_txt" class="col-sm-2 control-label">Email</label>
 
               <div class="col-sm-9">
-                <input type="email" class="form-control" id="inputEmail2" placeholder="Email">
+                <input type="email" class="form-control" id="email_txt" placeholder="Email">
               </div>
             </div>
 
             <div class="form-group">
-              <label for="inputEmail3" class="col-sm-2 control-label">Dirección</label>
+              <label for="address_txt" class="col-sm-2 control-label">Dirección</label>
 
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="inputEmail3" placeholder="Dirección">
-              </div>
-            </div>
-
-
-            <div class="form-group">
-              <label for="inputEmail4" class="col-sm-2 control-label">Copyright</label>
-
-              <div class="col-sm-9">
-                <input type="text" class="form-control" id="inputEmail4" placeholder="Copyright">
+                <input type="text" class="form-control" id="address_txt" placeholder="Dirección">
               </div>
             </div>
 
 
             <div class="form-group">
-              <label for="inputEmail5" class="col-sm-2 control-label">Copy footer</label>
+              <label for="copyR_txt" class="col-sm-2 control-label">Copyright</label>
 
               <div class="col-sm-9">
-                <input type="text" class="form-control" id="inputEmail5" placeholder="Copy">
+                <input type="text" class="form-control" id="copyR_txt" placeholder="Copyright">
+              </div>
+            </div>
+
+
+            <div class="form-group">
+              <label for="copy_txt" class="col-sm-2 control-label">Copy footer</label>
+
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="copy_txt" placeholder="Copy">
               </div>
             </div>
 
@@ -477,14 +448,13 @@ desired effect
               <label for="fb" class="col-sm-2 control-label">Link Facebook</label>
 
               <div class="col-sm-9">
-                <input t
-                       ype="text" class="form-control" id="fb" placeholder="URL">
+                <input type="text" class="form-control" id="fb" placeholder="URL">
               </div>
             </div>
 
 
             <div class="form-group">
-              <label for="tw" class="col-sm-2 control-label">Link Facebook</label>
+              <label for="tw" class="col-sm-2 control-label">Link Twitter</label>
 
               <div class="col-sm-9">
                 <input type="text" class="form-control" id="tw" placeholder="URL">
@@ -504,7 +474,8 @@ desired effect
               <label for="in" class="col-sm-2 control-label">imágen footer</label>
 
               <div class="col-sm-9">
-                <input type="file" >
+                <input id="img_foot" type="file" >
+                  <p id="oldImg_foot" class="help-block">imagen footer</p>
               </div>
             </div>
 
@@ -519,7 +490,7 @@ desired effect
 
 
 
-      <button class="btn btn-lg btn-success pull-right"><i class="fa fa-save"></i> Guardar</button>
+      <button class="btn btn-lg btn-success pull-right" onclick="saveData()"><i class="fa fa-save"></i> Guardar</button>
 
     </section>
     <!-- /.content -->
@@ -560,18 +531,73 @@ desired effect
         storageBucket: "lunaymiel-cms.appspot.com",
         messagingSenderId: "671142506834"
     };
-    var defaultApp = firebase.initializeApp(config);
 
-    console.log(defaultApp.name);
+
+    firebase.initializeApp(config);
+    var db = firebase.firestore();
+
+    const settings = {/* your settings... */ timestampsInSnapshots: true};
+    db.settings(settings);
+
+
+
+    var docRefFooter = db.collection('footer_info').doc('info')
+    var docRefGeneral = db.collection('general_info').doc('info')
+    var docRefSec_1 = db.collection('seccion1').doc('info')
+    var docRefSec_2 = db.collection('seccion2')
+    var docRefSec_3 = db.collection('seccion3').doc('info')
+    var docRefIns = db.collection('instrucciones')
+
+    var imgSrc = ""
+    var imgSrcHeader = ""
+    var imgSrcFooter = ""
+    var imgSrcLogo = ""
+    var imgSrcSec1_desk = ""
+    var imgSrcSec1_mob = ""
+    var imgSrcIns = ""
+
+    var numImgInsTotal = 0
+
+
+
+
+
+
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            // User is signed in.
+            console.log(user)
+
+            // ...
+        } else {
+            // User is signed out.
+            console.log("no user")
+            window.location.href = "login.html"
+            // ...
+        }
+    });
 
 
     var numCont = 0
+    var numContItem = 0
+    var numInsItem = 0
+
     $(document).ready(function ()
     {
+
         $('.textarea').wysihtml5()
 
-        $("#addCont_btn").click(function () {
-            var div = "<div class=\"box box-primary\">\n" +
+        $("#addCont_btn").click(function ()
+        {
+            addContinent()
+        })
+
+        /*
+        function addContinent()
+        {
+            numCont++
+
+            var div = "<div id='myBox' class=\"box box-primary continent\">\n" +
                 "              <div class=\"box-header with-border\">\n" +
                 "                <h3 class=\"box-title\">Continente</h3>\n" +
                 "                <div class=\"box-tools pull-right\">\n" +
@@ -583,10 +609,10 @@ desired effect
                 "              <div class=\"box-body\">\n" +
                 "                <div class=\"row\">\n" +
                 "                  <div class=\"col-md-12\">\n" +
-                "                    <input type=\"text\" placeholder=\"Continente\" style=\"margin-bottom:  20px;\">\n" +
+                "                    <input class=\"sec2_title_txt\" type=\"text\" placeholder=\"Continente\" style=\"margin-bottom:  20px;\">\n" +
                 "                  </div>\n" +
                 "                  <div class=\"col-md-12\">\n" +
-                "                  <textarea class=\"textarea\" placeholder=\"\"\n" +
+                "                  <textarea class=\"textarea sec2_body_txt\" placeholder=\"\"\n" +
                 "                            style=\"width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;\"></textarea>\n" +
                 "                  </div>\n" +
                 "                </div>\n" +
@@ -595,22 +621,469 @@ desired effect
                 "            </div>"
 
 
+            //$("#containerContinent").append(div)
+            $('#myBox').attr("id", "div_"+numCont)
+            $('#div_'+numCont+ ' .textarea').wysihtml5();
+        }
+
+        $("#addItemCont_btn").click(function () {
+
+            numContItem++
+
+            var div = "<div id='myBox2' class=\"box box-primary\">\n" +
+                "              <div class=\"box-header with-border\">\n" +
+                "                <h3 class=\"box-title\">Item Carrusel</h3>\n" +
+                "                <div class=\"box-tools pull-right\">\n" +
+                "                  <button type=\"button\" class=\"btn btn-box-tool\" ><i class=\"fa fa-times remove_me\"></i></button>\n" +
+                "                </div>\n" +
+                "                <!-- /.box-tools -->\n" +
+                "              </div>\n" +
+                "              <!-- /.box-header -->\n" +
+                "              <div class=\"box-body\">\n" +
+                "                <div class=\"row\">\n" +
+                "                  <div class=\"col-md-6\">\n" +
+                "                    <input type=\"file\" id=\"img_c1\">\n" +
+                "                  </div>\n" +
+                "                  <div class=\"col-md-6\">\n" +
+                "                    <input type=\"text\" class=\"text-fluid\" id=\"img_c_t1\" placeholder=\"Título\">\n" +
+                "                    <input type=\"text\" class=\"text-fluid\" id=\"img_c_st1\" placeholder=\"SubTítulo\">\n" +
+                "                    <input type=\"text\" class=\"text-fluid\" id=\"img_c_l1\" placeholder=\"Link\">\n" +
+                "                  </div>\n" +
+                "                </div>\n" +
+                "              </div>\n" +
+                "              <!-- /.box-body -->\n" +
+                "            </div>"
 
 
-            $("#containerContinent").append(div)
-            numCont++
+            $("#containerItemsContinent").append(div)
+            $('#myBox2').attr("id", "divItem_"+numContItem)
+
         })
+
+
+        $("#addItemIns_btn").click(function () {
+
+            numInsItem++
+
+            var div = "<div id='myBox3' class=\"box box-primary\">\n" +
+                "            <div class=\"box-header with-border\">\n" +
+                "              <h3 class=\"box-title\">Item Instrucciones</h3>\n" +
+                "              <div class=\"box-tools pull-right\">\n" +
+                "                <button type=\"button\" class=\"btn btn-box-tool\" ><i class=\"fa fa-times remove_me\"></i></button>\n" +
+                "              </div>\n" +
+                "              <!-- /.box-tools -->\n" +
+                "            </div>\n" +
+                "            <!-- /.box-header -->\n" +
+                "            <div class=\"box-body\">\n" +
+                "              <div class=\"row\">\n" +
+                "                <div class=\"col-md-12\">\n" +
+                "                  <input type=\"file\">\n" +
+                "                </div>\n" +
+                "              </div>\n" +
+                "            </div>\n" +
+                "            <!-- /.box-body -->\n" +
+                "          </div>"
+
+            $("#containerItemsInstructions").append(div)
+            $('#myBox2').attr("id", "divIns_"+numInsItem)
+        })
+
+        $('#containerItemsInstructions').on('click', '.remove_me', function(e) {
+            e.preventDefault();
+            numInsItem--
+            $(this).parent().parent().parent().parent().remove();
+        });
 
         $('#containerContinent').on('click', '.remove_me', function(e) {
             e.preventDefault();
-
+            numCont--
             $(this).parent().parent().parent().parent().remove();
         });
 
 
+        $('#containerItemsContinent').on('click', '.remove_me', function(e) {
+            e.preventDefault();
+            numContItem--
+            $(this).parent().parent().parent().parent().remove();
+        });
+    */
+
+
+
+
+
+
+
+
+
+
+    //images
+
+    document.getElementById("img_h").addEventListener('change', function(e){
+        var file = e.target.files[0];
+        var storageRef = firebase.storage().ref("header/"+file.name);
+        storageRef.put(file);
+        console.log(file)
+        imgSrcHeader = file.name
+    });
+
+
+    document.getElementById("img_logo").addEventListener('change', function(e){
+        var file = e.target.files[0];
+        var storageRef = firebase.storage().ref("logo/"+file.name);
+        storageRef.put(file);
+        console.log(file)
+        imgSrcLogo = file.name
+    });
+
+
+    document.getElementById("img_s1_desk").addEventListener('change', function(e){
+        var file = e.target.files[0];
+        var storageRef = firebase.storage().ref("seccion1/"+file.name);
+        storageRef.put(file);
+        console.log(file)
+        imgSrcSec1_desk = file.name
+    });
+
+    document.getElementById("img_s1_mob").addEventListener('change', function(e){
+        var file = e.target.files[0];
+        var storageRef = firebase.storage().ref("seccion1/"+file.name);
+        storageRef.put(file);
+        console.log(file)
+        imgSrcSec1_mob = file.name
+    });
+
+    document.getElementById("img_foot").addEventListener('change', function(e){
+        var file = e.target.files[0];
+        var storageRef = firebase.storage().ref("footer/"+file.name);
+        storageRef.put(file);
+        console.log(file)
+        imgSrcFooter = file.name
+    });
+
+    document.getElementById("img_ins").addEventListener('change', function(e){
+        var file = e.target.files[0];
+        var storageRef = firebase.storage().ref("instrucciones/"+file.name);
+        storageRef.put(file);
+        console.log(file)
+        imgSrcIns = file.name
+
+        var docName = "num_"+(numImgInsTotal+1)
+        docRefIns.doc(docName).set({
+            img: imgSrcIns
+
+            }).then(function() {
+                window.location.reload()
+                console.log("Document successfully written!");
+
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+            })
+    });
+
+
+    //load Instructions
+        docRefIns.get().then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                // doc.data() is never undefined for query doc snapshots
+                console.log(doc.id, " => ", doc.data());
+                numImgInsTotal++
+
+
+                var myId = doc.id
+                var _title = doc.data().img
+
+                var div = '<tr>\n' +
+                    '                            <td>'+_title+'</td>\n' +
+                    '                            <td>\n' +
+                    '                                <div class="btn-group">\n' +
+                    //'                                    <button data-capture="'+myId+'" onclick="editMe(this)" type="button" class="btn btn-default"><i class="fa fa-edit"></i></button>\n' +
+                    '                                    <button data-capture="'+myId+'" onclick="deleteMeInstructions(this)" type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>\n' +
+                    '                                </div>\n' +
+                    '                            </td></tr>'
+
+                $("#bodyTable_ins").append(div)
+            });
+        });
+
+
+
+
+        //load general info
+        docRefGeneral.get().then(function(doc){
+            if(doc.exists){
+                imgSrcFooter = doc.data().footer
+                imgSrcLogo = doc.data().logo
+                imgSrcHeader = doc.data().header
+
+                $('#oldImg_foot').html(doc.data().footer)
+                $('#oldImg_header').html(doc.data().header)
+                $('#oldImg_logo').html(doc.data().logo)
+                $('#sec2_title').val(doc.data().titleSec2)
+            }
+        }).catch(function (error) {
+            console.log("Error getting document:", error);
+        })
+
+
+
+
+    //load sc1
+    docRefSec_1.get().then(function(doc) {
+        if (doc.exists) {
+            $("#sec1_title").val(doc.data().title)
+            $('#sec1_body iframe').contents().find('.wysihtml5-editor').html(doc.data().body);
+
+            imgSrcSec1_desk = doc.data().imgD
+            imgSrcSec1_mob = doc.data().imgM
+            $('#oldImg_sec1').html(doc.data().imgD)
+            $('#oldImg_sec1_m').html(doc.data().imgM)
+        } else {
+            console.log("No such document!");
+        }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
+
+
+
+    //load sec2
+    var numItems =0
+    docRefSec_2.get().then(function(querySnapshot) {
+        querySnapshot.forEach(function(doc) {
+            // doc.data() is never undefined for query doc snapshots
+            console.log(doc.id, " => ", doc.data());
+            numItems++
+
+            var myId = doc.id
+            var _title = doc.data().title
+
+            var div = '<tr><td>'+numItems+'.</td>\n' +
+                '                            <td>'+_title+'</td>\n' +
+                '                            <td>\n' +
+                '                                <div class="btn-group">\n' +
+                '                                    <button data-capture="'+myId+'" onclick="editMe(this)" type="button" class="btn btn-default"><i class="fa fa-edit"></i></button>\n' +
+                '                                    <button data-capture="'+myId+'" onclick="deleteMe(this)" type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>\n' +
+                '                                </div>\n' +
+                '                            </td></tr>'
+
+            $("#bodyTable_cont").append(div)
+
+
+        });
+    });
+
+
+
+
+    //load sc3
+    docRefSec_3.get().then(function(doc) {
+        if (doc.exists) {
+            $("#sec3_title").val(doc.data().title)
+            //console.log(doc.data().body)
+            $('#sec3_body iframe').contents().find('.wysihtml5-editor').html(doc.data().body);
+
+        } else {
+            console.log("No such document!");
+        }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
+
+
+
+    //load footer
+    docRefFooter.get().then(function(doc) {
+        if (doc.exists) {
+            console.log("Document data:", doc.data());
+            $("#fb").val(doc.data().link_fb)
+            $("#tw").val(doc.data().link_tw)
+            $("#in").val(doc.data().link_in)
+            $("#phone_txt").val(doc.data().phone)
+            $("#email_txt").val(doc.data().email)
+            $("#address_txt").val(doc.data().address)
+            $("#copyR_txt").val(doc.data().copyright)
+            $("#copy_txt").val(doc.data().copy)
+
+
+        } else {
+            console.log("No such document!");
+        }
+    }).catch(function(error) {
+        console.log("Error getting document:", error);
+    });
 
     })
+    //<!-- SAVE -->
+    function saveData()
+    {
 
+        //save info footer
+        var _link_fb = $("#fb").val()
+        var _link_tw = $("#tw").val()
+        var _link_in = $("#in").val()
+        var _phone = $("#phone_txt").val()
+        var _email = $("#email_txt").val()
+        var _address = $("#address_txt").val()
+        var _copyR = $("#copyR_txt").val()
+        var _copy = $("#copy_txt").val()
+
+
+
+        docRefFooter.set({
+            link_fb: _link_fb,
+            link_in: _link_tw,
+            link_tw: _link_in,
+            phone:_phone,
+            email:_email,
+            address:_address,
+            copyright:_copyR,
+            copy:_copy,
+            img: imgSrc
+
+        }, function(error) {
+            if (error) {
+                console.log("The write failed...")
+            } else {
+                console.log("Data saved successfully!")
+            }
+        });
+
+
+
+        //save seccion 1
+        var _sec1_title = $("#sec1_title").val()
+        var _sec1_body = $("#sec1_body_txt").val()
+
+        docRefSec_1.set({
+            title: _sec1_title,
+            body: _sec1_body,
+            imgD: imgSrcSec1_desk,
+            imgM: imgSrcSec1_mob
+
+        }, function(error) {
+            if (error) {
+                console.log("The write failed...")
+                alert('Guardado con Éxito')
+            } else {
+                console.log("Data saved successfully!")
+            }
+        });
+
+
+        //save seccion 2
+        /*var _sec2_title = $("#sec2_title").val()
+
+
+        var arrCont = []
+        var arrContTitle = []
+
+        for (let i = 1; i <= numCont; i++)
+        {
+            var _sec2_body = $("#div_"+i+" .sec2_body_txt").val()
+            var _sec2_title = $("#div_"+i+" .sec2_title_txt").val()
+            arrCont.push(_sec2_body)
+            arrContTitle.push(_sec2_title)
+
+        }
+
+
+        console.log(arrCont)
+
+
+        docRefSec_2.set({
+            title: _sec2_title,
+            allBodies: arrCont,
+            allTitles: arrContTitle
+
+            }).then(function() {
+                console.log("Document successfully written!");
+
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+            })
+        */
+
+        //save seccion 3
+        var _sec3_title = $("#sec3_title").val()
+        var _sec3_body = $("#sec3_body_txt").val()
+
+        docRefSec_3.set({
+            title: _sec3_title,
+            body: _sec3_body
+
+            }).then(function() {
+                console.log("Document successfully written!");
+
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+            })
+
+
+
+        //save info general
+        var _sec2_title = $("#sec2_title").val()
+
+        docRefGeneral.set({
+            titleSec2:_sec2_title,
+            header: imgSrcHeader,
+            logo: imgSrcLogo,
+            footer: imgSrcFooter
+
+            }).then(function() {
+                alert("información guardada con éxito")
+                console.log("Document successfully written!");
+
+            })
+            .catch(function(error) {
+                console.error("Error writing document: ", error);
+            })
+
+
+    }
+
+
+    function editMe(_this) {
+        window.location.href = "continent.html?id="+_this.dataset.capture
+        console.log(_this.dataset.capture)
+    }
+    function deleteMe(_this) {
+
+        if (confirm('¿Estas seguro que quieres borrar este item?')) {
+            docRefSec_2.doc(_this.dataset.capture).delete().then(function() {
+                console.log("Document successfully deleted!");
+                window.location.reload()
+            }).catch(function(error) {
+                console.error("Error removing document: ", error);
+            });
+        } else {
+
+
+        }
+    }
+
+    function deleteMeInstructions(_this) {
+
+        if (confirm('¿Estas seguro que quieres borrar este item?')) {
+            docRefIns.doc(_this.dataset.capture).delete().then(function() {
+                console.log("Document successfully deleted!");
+                window.location.reload()
+            }).catch(function(error) {
+                console.error("Error removing document: ", error);
+            });
+        } else {
+
+
+        }
+    }
+
+    function gotoNewCont()
+    {
+        window.location.href = "continent.html?id="
+    }
 
 </script>
 

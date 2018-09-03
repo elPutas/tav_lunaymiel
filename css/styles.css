@@ -141,11 +141,11 @@ body{
     height: 10px;
 }
 .title{
-    margin-top: 50px;
-    font-family: 'latoblack' !important;
-    color: #BDA16B;
-    letter-spacing: 10px;
-    font-size: 25pt;
+  margin-top: 50px;
+font-family: 'latoblack' !important;
+color: #BDA16B;
+letter-spacing: 5px;
+font-size: 22pt;
 }
 
 .textWithIcon{
@@ -272,6 +272,7 @@ body{
 }
 #myCarousel h6
 {
+    font-size: 2rem !important;
     font-family: latolight !important;
 }
 
@@ -310,6 +311,12 @@ hr {
 
 }
 
+#navbarTogglerDemo01{
+  position: absolute;
+  margin-top: 50px;
+  width: 350px;
+}
+
 .centerSmall{
     width: 80%;
     margin-left: auto;
@@ -337,6 +344,29 @@ hr {
 #footer p{
     color: #BDA16B;
     letter-spacing: 1px;
+    font-size: 8pt;
+    margin-left: 5px;
+    margin-top: 6px;
+    font-family: latolight !important;
+}
+#footer ul{
+    text-align: center;
+}
+#footer a{
+    color: #BDA16B;
+    text-decoration: none;
+}
+#footer #social_btns a{
+    color: #BDA16B;
+    font-size: 20pt;
+    text-decoration: none;
+}
+
+
+#footer li{
+    font-family: 'latobold' !important;
+    color: #BDA16B;
+    letter-spacing: 1px;
     font-size: 6pt;
 }
 
@@ -345,6 +375,16 @@ hr {
     letter-spacing: 1px;
     font-size: 5pt;
     text-align: center;
+}
+
+#body_carrousel{
+    height: 360px;
+    overflow: auto;
+}
+
+#carouselContainer{
+  height: 315px;
+
 }
 
 @media (max-width: 574px) {
@@ -381,9 +421,14 @@ hr {
         margin-top: 170px;
     }
 
-
+    #carouselContainer{
+      height: 315px;
+      width: 340px
+    }
 
 }
+
+
 
 
 @media (max-width: 993px) {

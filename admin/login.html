@@ -3,7 +3,17 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Log in</title>
+  <title>AdminLUNAYMIEL | Log in</title>
+
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-messaging.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-functions.js"></script>
+
+
+
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -36,13 +46,13 @@
   <div class="login-box-body">
 
 
-    <form action="starter.html" method="post">
+
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Email">
+        <input id="email" type="email" class="form-control" placeholder="Email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password">
+        <input id="pass" type="password" class="form-control" placeholder="Password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
@@ -51,11 +61,11 @@
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Login</button>
+          <button onclick="logMe()" class="btn btn-primary btn-block btn-flat">Login</button>
         </div>
         <!-- /.col -->
       </div>
-    </form>
+
 
 
   </div>
@@ -77,6 +87,51 @@
       increaseArea: '20%' /* optional */
     });
   });
+
+  // Initialize Firebase
+  var config = {
+      apiKey: "AIzaSyACvxmQZih9JPc_z5Kb0h-IAvcnGwOBugM",
+      authDomain: "lunaymiel-cms.firebaseapp.com",
+      databaseURL: "https://lunaymiel-cms.firebaseio.com",
+      projectId: "lunaymiel-cms",
+      storageBucket: "lunaymiel-cms.appspot.com",
+      messagingSenderId: "671142506834"
+  };
+  var tavApp = firebase.initializeApp(config);
+
+
+
+  function logMe()
+  {
+      var email = $("#email").val()
+      var password = $("#pass").val()
+
+      console.log(email)
+      console.log(password)
+
+      firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+          // Handle Errors here.
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          // ...
+      });
+
+  }
+
+  firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+          // User is signed in.
+          console.log(user)
+          window.location.href = "starter.html"
+          // ...
+      } else {
+          // User is signed out.
+          console.log("no user")
+          // ...
+      }
+  });
+
+
 </script>
 </body>
 </html>

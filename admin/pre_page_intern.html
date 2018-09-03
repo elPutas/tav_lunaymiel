@@ -7,7 +7,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLUNAYMIEL_tyc</title>
+    <title>Admin_LUNA_internas</title>
+
 
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-auth.js"></script>
@@ -114,15 +115,15 @@ desired effect
                 <li class="header">SECCIONES</li>
                 <!-- Optionally, you can add icons to the links -->
                 <li><a href="starter.html"><i class="fa fa-link"></i> <span>Index</span></a></li>
-                <li><a href="pre_page_intern.html?id="><i class="fa fa-link"></i> <span>Internas</span></a></li>
-                <li class="treeview menu-open active">
+                <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Internas</span></a></li>
+                <li class="treeview">
                     <a href="#"><i class="fa fa-link"></i> <span>Páginas genéricas</span>
                         <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="active"><a href="#">Términos y condiciones</a></li>
+                        <li><a href="page_tyc.html">Términos y condiciones</a></li>
                         <li><a href="page_policy.html">Políticas de privacidad</a></li>
                         <li><a href="page_faq.html">Preguntas frecuentes</a></li>
                     </ul>
@@ -145,30 +146,24 @@ desired effect
         <section class="content container-fluid">
 
 
-                      <div class="box">
-                          <div class="box-header">
-                              <input id="title" type="text" placeholder="TyC">
-                              <small>Términos y condiciones</small>
 
-                              <!-- tools box -->
-                              <div class="pull-right box-tools">
-                                  <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
-                                          title="Collapse">
-                                      <i class="fa fa-minus"></i></button>
+            <!-- Section 2 -->
+            <div class="box">
+                <table class="table table-bordered table-striped">
+                    <tbody id="bodyTable">
+                    <tr>
+                        <th>Páginas internas</th>
+                        <th style="width: 100px"></th>
+                    </tr>
+                    </tbody>
+                </table>
 
-                              </div>
-                              <!-- /. tools -->
-                          </div>
-                          <!-- /.box-header -->
-                          <div id="body_cont" class="box-body pad">
-                              <form >
-                                <textarea id="body_txt" class="textarea" placeholder="Place some text here"
-                                    style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                              </form>
-                          </div>
-                      </div>
+                <button onclick="gotoNewPage()" type="submit" class="btn btn-info pull-right"><li class="fa fa-plus"></li> Agregar interna</button>
 
-                      <button onclick="saveData()"  class="btn btn-lg btn-success pull-right"><i class="fa fa-save"></i> Guardar</button>
+            </div>
+
+
+
 
         </section>
         <!-- /.content -->
@@ -198,6 +193,9 @@ desired effect
 <!-- Bootstrap WYSIHTML5 -->
 <script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <script>
+
+
+
     // Initialize Firebase
     var config = {
         apiKey: "AIzaSyACvxmQZih9JPc_z5Kb0h-IAvcnGwOBugM",
@@ -215,7 +213,12 @@ desired effect
     const settings = {/* your settings... */ timestampsInSnapshots: true};
     db.settings(settings);
 
-    var docRef = db.collection('tyc').doc("info")
+
+
+    var docRefIn = db.collection('interna')
+
+
+
 
     firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
@@ -231,45 +234,69 @@ desired effect
         }
     });
 
+    function gotoNewPage()
+    {
+        window.location.href = "page_intern.html?id="
+    }
+
+    function editMe(_this) {
+        window.location.href = "page_intern.html?id="+_this.dataset.capture
+        console.log(_this.dataset.capture)
+    }
+    function deleteMe(_this) {
+
+        if (confirm('¿Estas seguro que quieres borrar este item?')) {
+            docRefSec_2_item.doc(_this.dataset.capture).delete().then(function() {
+                console.log("Document successfully deleted!");
+                window.location.reload()
+            }).catch(function(error) {
+                console.error("Error removing document: ", error);
+            });
+        } else {
+
+
+        }
+    }
+
 
     $(function () {
 
         $('.textarea').wysihtml5()
 
 
-        //load info
-        docRef.get().then(function(doc) {
-            if (doc.exists) {
-              console.log($('#body_txt').contents().find('.wysihtml5-editor'));
-                $("#title").val(doc.data().title)
-                $('#body_cont iframe').contents().find('.wysihtml5-editor').html(doc.data().body);
 
-            } else {
-                console.log("No such document!");
-            }
-        }).catch(function(error) {
-            console.log("Error getting document:", error);
+
+
+        //load
+        var numItems =0
+        docRefIn.get().then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                // doc.data() is never undefined for query doc snapshots
+                console.log(doc.id, " => ", doc.data());
+                numItems++
+
+                var myId = doc.id
+                var _title = doc.data().name
+
+                var div = '<tr>\n' +
+                    '                            <td>'+_title+'</td>\n' +
+                    '                            <td>\n' +
+                    '                                <div class="btn-group">\n' +
+                    '                                    <button data-capture="'+myId+'" onclick="editMe(this)" type="button" class="btn btn-default"><i class="fa fa-edit"></i></button>\n' +
+                    '                                    <button data-capture="'+myId+'" onclick="deleteMe(this)" type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>\n' +
+                    '                                </div>\n' +
+                    '                            </td></tr>'
+
+                $("#bodyTable").append(div)
+
+
+            });
         });
+
+
     })
 
-    function saveData()
-    {
-      var _title = $("#title").val()
-      var _body = $("#body_txt").val()
 
-      //save info
-      docRef.set({
-          body: _body,
-          title: _title
-
-          }).then(function() {
-              alert("Guardado con éxito")
-              console.log("Document successfully written!");
-          })
-          .catch(function(error) {
-              console.error("Error writing document: ", error);
-          })
-    }
 </script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.

@@ -7,7 +7,16 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLUNAYMIEL</title>
+    <title>Admin_LUNA_interna</title>
+
+
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-functions.js"></script>
+
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -31,6 +40,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
 
     <!-- Google Font -->
     <link rel="stylesheet"
@@ -65,7 +76,7 @@ desired effect
         <!-- Logo -->
         <a href="index2.html" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
-            <span class="logo-mini"><b>A</b>LT</span>
+            <span class="logo-mini"><b>A</b>LM</span>
             <!-- logo for regular state and mobile devices -->
             <span class="logo-lg"><b>Admin</b>LUNA Y MIEL</span>
         </a>
@@ -101,7 +112,7 @@ desired effect
 
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
-                <li class="header">HEADER</li>
+                <li class="header">SECCIONES</li>
                 <!-- Optionally, you can add icons to the links -->
                 <li><a href="starter.html"><i class="fa fa-link"></i> <span>Index</span></a></li>
                 <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Internas</span></a></li>
@@ -127,65 +138,100 @@ desired effect
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
+            <input id="sec_title" type="text" placeholder="Nombre interna">
+            <small>id (sin espacios o caráteres especiales) </small>
 
+            <ol class="breadcrumb">
+                <li><a href="pre_page_intern.html"><i class="fa fa-link"></i> Todas las internas</a></li>
+                <li class="active">actual</li>
+            </ol>
 
         </section>
 
         <!-- Main content -->
         <section class="content container-fluid">
 
-            <div class="row">
 
-                <div class="col-md-6">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">
-                                Header
-                                <small>Solo imagen</small>
-                            </h3>
+            <!-- /.modal-dialog carrousel -->
+            <div class="modal fade in" id="modal-default" style="display: none;">
+                <div class="modal-dialog">
+                    <!-- /.modal-content -->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span></button>
+                            <h4 class="modal-title">Agregar item carrusel</h4>
+                        </div>
+                        <div class="modal-body">
 
-                            <div class="box-body">
-                                <div class="form-group">
 
-                                    <input type="file" id="img_h">
-
-                                    <p class="help-block">primera imagen</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="file" id="img_item">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="text-fluid" id="item_title" placeholder="Título">
+                                    <input type="text" class="text-fluid" id="item_subTitle" placeholder="SubTítulo">
                                 </div>
                             </div>
 
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">
-                                Logo
-                                <small>Solo imagen</small>
-                            </h3>
-
-                            <div class="box-body">
-                                <div class="form-group">
-
-                                    <input type="file" id="img_logo">
-
-                                    <p class="help-block">logo site</p>
-                                </div>
-                            </div>
 
                         </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" onclick="saveCarrousel()">Guardar</button>
+                        </div>
                     </div>
+                    <!-- /.modal-content -->
                 </div>
-
-
-
+                <!-- /.modal-dialog -->
             </div>
+
+
+            <!-- /.modal-dialog others -->
+            <div class="modal fade in" id="modal-default2" style="display: none;">
+                <div class="modal-dialog">
+                    <!-- /.modal-content -->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span></button>
+                            <h4 class="modal-title">Agregar otros destinos</h4>
+                        </div>
+                        <div class="modal-body">
+
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input type="file" id="img_ins">
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" class="text-fluid" id="item_link" placeholder="Link">
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" onclick="saveItem()">Guardar</button>
+                        </div>
+                    </div>
+                    <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+            </div>
+
+
+            <div class="form-group">
+
+                <input type="file" id="img_h">
+
+                <p id="oldImg_header" class="help-block">header sección</p>
+            </div>
+
 
             <div class="box">
                 <div class="box-header">
-                    <input type="text" placeholder="T&C">
-                    <small>Términos y condiciones</small>
+                    <small>Sección 1</small>
 
                     <!-- tools box -->
                     <div class="pull-right box-tools">
@@ -197,28 +243,70 @@ desired effect
                     <!-- /. tools -->
                 </div>
                 <!-- /.box-header -->
-                <div class="box-body pad">
+
+
+
+
+                <div id="sec_body_1" class="box-body pad">
                     <form>
-                <textarea class="textarea" placeholder="Place some text here"
+                        <textarea id="sec1_body_txt_1" class="textarea" placeholder="Place some text here"
                           style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
                     </form>
 
+                    <small>imágen</small>
+                    <div class="row list-inline">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="file" id="img_s1_1">
+                                <p id="txt_s1_1" class="help-block">grande</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+
+
+
+
+                <div id="sec_body_2" class="box-body pad">
+                    <form>
+                        <textarea id="sec1_body_txt_2" class="textarea" placeholder="Place some text here"
+                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                    </form>
 
                     <small>imágen</small>
-
-
                     <div class="row list-inline">
 
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="file" id="img_s2_1">
-                                <p class="help-block">desktop</p>
+                                <input type="file" id="img_s1_2">
+                                <p id="txt_s1_2" class="help-block">pequeña</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div id="sec_body_3" class="box-body pad">
+                    <form>
+                        <textarea id="sec1_body_txt_3" class="textarea" placeholder="Place some text here"
+                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                    </form>
+
+                    <small>imágen</small>
+                    <div class="row list-inline">
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="file" id="img_s1_3">
+                                <p id="txt_s1_3" class="help-block">pequeña</p>
                             </div>
                         </div>
 
                     </div>
-
                 </div>
 
 
@@ -234,7 +322,7 @@ desired effect
             <div class="box">
                 <div class="box-header">
 
-                    <input type="text" placeholder="Destinos">
+                    <input id="act_title" type="text" placeholder="Actividades">
                     <small>sección 2</small>
                     <!-- tools box -->
                     <div class="pull-right box-tools">
@@ -246,86 +334,39 @@ desired effect
                     <!-- /. tools -->
                 </div>
                 <!-- /.box-header -->
-                <div class="box-body pad">
+                <div id="sec_body_4" class="box-body pad">
 
 
-
-                    <!--CONTINENTE-->
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Continente</h3>
-
-                            <div class="box-tools pull-right">
-                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                            </div>
-                            <!-- /.box-tools -->
-                        </div>
                         <!-- /.box-header -->
                         <div class="box-body">
                             <div class="row">
 
                                 <div class="col-md-12">
-                                    <input type="text" placeholder="Continente" style="margin-bottom:  20px;">
-                                </div>
-                                <div class="col-md-12">
-                <textarea class="textarea" placeholder=""
-                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                    <textarea id="sec1_body_txt_4" class="textarea" placeholder=""
+                                        style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
 
                                 </div>
                             </div>
 
                         </div>
                         <!-- /.box-body -->
-                    </div>
 
 
-
-
-                    <button type="submit" class="btn btn-primary"><li class="fa fa-plus"></li> Agregar continente</button>
-                    <br>
-                    <br>
-
-                    <small>imágenes / texto carrusel</small>
-
-
-
-
-                    <!--ITEM CARROUSEL-->
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Item Carrusel</h3>
-
-                            <div class="box-tools pull-right">
-                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                            </div>
-                            <!-- /.box-tools -->
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <div class="row">
-
-                                <div class="col-md-6">
-                                    <input type="file" id="img_c1">
-                                </div>
-
-                                <div class="col-md-6">
-                                    <input type="text" class="text-fluid" id="img_c_t1" placeholder="Título">
-                                    <input type="text" class="text-fluid" id="img_c_st1" placeholder="SubTítulo">
-                                    <input type="text" class="text-fluid" id="img_c_l1" placeholder="Link">
-                                </div>
-
-                            </div>
-
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
+                    <table class="table table-bordered table-striped">
+                        <tbody id="bodyTable_act">
+                        <tr>
+                            <th>Imágenes Carrusel</th>
+                            <th style="width: 50px"></th>
+                        </tr>
+                        </tbody>
+                    </table>
 
 
 
 
 
 
-                    <button type="submit" class="btn btn-primary"><li class="fa fa-plus"></li> Agregar item</button>
+                    <button data-toggle="modal" data-target="#modal-default" type="submit" class="btn btn-info"><li class="fa fa-plus"></li> Agregar item</button>
 
 
 
@@ -341,7 +382,7 @@ desired effect
             <div class="box">
                 <div class="box-header">
 
-                    <input type="text" placeholder="Como funciona">
+                    <input id="des_title" type="text" placeholder="Otros destinos">
                     <small>sección 3</small>
                     <!-- tools box -->
                     <div class="pull-right box-tools">
@@ -357,159 +398,23 @@ desired effect
 
 
 
-          <textarea class="textarea" placeholder=""
-                    style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                    <table class="table table-bordered table-striped">
+                        <tbody id="bodyTable_dest">
+                        <tr>
+                            <th>Imágenes Otros destinos</th>
+                            <th style="width: 50px"></th>
+                        </tr>
+                        </tbody>
+                    </table>
 
 
+                    <button data-toggle="modal" data-target="#modal-default2" type="submit" class="btn btn-info"><li class="fa fa-plus"></li> Agregar otros destinos</button>
 
-
-                    <small>imágenes</small>
-
-
-
-
-                    <!--ITEM INSTRUCCIONES-->
-                    <div class="box box-primary">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Item Instrucciones</h3>
-
-                            <div class="box-tools pull-right">
-                                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                            </div>
-                            <!-- /.box-tools -->
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body">
-                            <div class="row">
-
-                                <div class="col-md-12">
-                                    <input type="file">
-                                </div>
-                            </div>
-
-                        </div>
-                        <!-- /.box-body -->
-                    </div>
-
-                    <button type="submit" class="btn btn-primary"><li class="fa fa-plus"></li> Agregar item</button>
 
                 </div>
             </div>
 
-
-
-
-
-
-
-
-            <div class="box">
-                <div class="box-header">
-
-
-                    <h4>Información footer</h4>
-                    <!-- tools box -->
-                    <div class="pull-right box-tools">
-                        <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
-                                title="Collapse">
-                            <i class="fa fa-minus"></i></button>
-
-                    </div>
-                    <!-- /. tools -->
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body pad">
-
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <label for="inputEmail1" class="col-sm-2 control-label">Teléfono</label>
-
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="inputEmail1" placeholder="Teléfono">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="inputEmail2" class="col-sm-2 control-label">Email</label>
-
-                            <div class="col-sm-9">
-                                <input type="email" class="form-control" id="inputEmail2" placeholder="Email">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">Dirección</label>
-
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="inputEmail3" placeholder="Dirección">
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="inputEmail4" class="col-sm-2 control-label">Copyright</label>
-
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="inputEmail4" placeholder="Copyright">
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="inputEmail5" class="col-sm-2 control-label">Copy footer</label>
-
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="inputEmail5" placeholder="Copy">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="fb" class="col-sm-2 control-label">Link Facebook</label>
-
-                            <div class="col-sm-9">
-                                <input t
-                                       ype="text" class="form-control" id="fb" placeholder="URL">
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="tw" class="col-sm-2 control-label">Link Facebook</label>
-
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="tw" placeholder="URL">
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="in" class="col-sm-2 control-label">Link Instagram</label>
-
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="in" placeholder="URL">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="in" class="col-sm-2 control-label">imágen footer</label>
-
-                            <div class="col-sm-9">
-                                <input type="file" >
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <!-- /.box-body -->
-                </div>
-
-
-            </div>
-
-
-
-            <button class="btn btn-lg btn-success pull-right"><i class="fa fa-save"></i> Guardar</button>
+            <button onclick="saveData()" class="btn btn-lg btn-success pull-right"><i class="fa fa-save"></i> Guardar</button>
 
         </section>
         <!-- /.content -->
@@ -539,14 +444,386 @@ desired effect
 <!-- Bootstrap WYSIHTML5 -->
 <script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <script>
+    //GET PARAMS
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return sParameterName[1] === undefined ? true : sParameterName[1];
+            }
+        }
+    };
+
+
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyACvxmQZih9JPc_z5Kb0h-IAvcnGwOBugM",
+        authDomain: "lunaymiel-cms.firebaseapp.com",
+        databaseURL: "https://lunaymiel-cms.firebaseio.com",
+        projectId: "lunaymiel-cms",
+        storageBucket: "lunaymiel-cms.appspot.com",
+        messagingSenderId: "671142506834"
+    };
+
+
+    firebase.initializeApp(config);
+    var db = firebase.firestore();
+
+    const settings = {/* your settings... */ timestampsInSnapshots: true};
+    db.settings(settings);
+
+
+
+    var saveID = getUrlParameter('id');
+    var imgSrc = ""
+    var imgSrc_o = ""
+    var imgSrc_header = ""
+    var imgSrc_1_1 = ""
+    var imgSrc_1_2 = ""
+    var imgSrc_1_3 = ""
+
+    var numImgInsTotal = 0
+
+    console.log(saveID)
+
+
+
+    var docRefIns = db.collection('interna_seccion3')
+    var docRefSec_intern = db.collection('interna')
+    var docRefSec_in_item
+    var docRefSec_in_dest
+
+    if(saveID!="")
+    {
+        docRefSec_in_item = db.collection('interna').doc(saveID).collection("items")
+        docRefSec_in_dest = db.collection('interna').doc(saveID).collection("items_dest")
+    }
+
+
+
+
+
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            // User is signed in.
+            console.log(user)
+
+            // ...
+        } else {
+            // User is signed out.
+            console.log("no user")
+            window.location.href = "index.html"
+            // ...
+        }
+    });
+
+    function deleteMe(_this) {
+
+        if (confirm('¿Estas seguro que quieres borrar este item?')) {
+            docRefSec_in_item.doc(_this.dataset.capture).delete().then(function() {
+                console.log("Document successfully deleted!");
+                window.location.reload()
+            }).catch(function(error) {
+                console.error("Error removing document: ", error);
+            });
+        } else {
+
+
+        }
+    }
+
+
+    function deleteDest(_this) {
+
+        if (confirm('¿Estas seguro que quieres borrar este item?')) {
+            docRefSec_in_dest.doc(_this.dataset.capture).delete().then(function() {
+                console.log("Document successfully deleted!");
+                window.location.reload()
+            }).catch(function(error) {
+                console.error("Error removing document: ", error);
+            });
+        } else {
+
+
+        }
+    }
+
     $(function () {
 
         $('.textarea').wysihtml5()
-    })
-</script>
 
-<!-- Optionally, you can add Slimscroll and FastClick plugins.
-     Both of these plugins are recommended to enhance the
-     user experience. -->
+        //images
+        document.getElementById("img_h").addEventListener('change', function(e){
+            var file = e.target.files[0];
+            var storageRef_head = firebase.storage().ref("interna_header/"+file.name);
+            storageRef_head.put(file);
+            imgSrc_header = file.name
+        });
+        document.getElementById("img_item").addEventListener('change', function(e){
+            var file = e.target.files[0];
+            var storageRef = firebase.storage().ref("carrousel_intern/"+file.name);
+            storageRef.put(file);
+            console.log(file)
+            imgSrc = file.name
+        });
+
+        document.getElementById("img_s1_1").addEventListener('change', function(e){
+            var file = e.target.files[0];
+            var storageRef_sec1 = firebase.storage().ref('interna_img/'+file.name)
+            storageRef_sec1.put(file);
+            console.log(file)
+            imgSrc_1_1 = file.name
+        });
+        document.getElementById("img_s1_2").addEventListener('change', function(e){
+            var file = e.target.files[0];
+            var storageRef_sec1 = firebase.storage().ref('interna_img/'+file.name)
+            storageRef_sec1.put(file);
+            console.log(file)
+            imgSrc_1_2 = file.name
+        });
+        document.getElementById("img_s1_3").addEventListener('change', function(e){
+            var file = e.target.files[0];
+            var storageRef_sec1 = firebase.storage().ref('interna_img/'+file.name)
+            storageRef_sec1.put(file);
+            console.log(file)
+            imgSrc_1_3 = file.name
+        });
+
+        document.getElementById("img_ins").addEventListener('change', function(e){
+            var file = e.target.files[0];
+            var storageRef = firebase.storage().ref("destinos/"+file.name);
+            storageRef.put(file);
+            imgSrc_o = file.name
+            /*
+            if(saveID != "")
+            {
+
+                storageRef.put(file);
+                imgSrc = file.name
+
+                var docName = "num_"+(numImgInsTotal+1)
+                docRefSec_in_dest.doc(docName).set({
+                    img: imgSrc
+
+                    }).then(function() {
+
+                    window.location.reload()
+                    console.log("Document successfully written!");
+
+                    })
+                    .catch(function(error) {
+                        console.error("Error writing document: ", error);
+                    })
+            }else{
+                alert("No has guardado esta sección aún")
+            }
+            */
+        });
+
+
+
+        //load sc1
+        if(saveID != "")
+        {
+            docRefSec_intern.doc(saveID).get().then(function(doc) {
+                if (doc.exists) {
+                    $('#oldImg_header').html(doc.data().header)
+                    $('#txt_s1_1').html(doc.data().img_1_1)
+                    $('#txt_s1_2').html(doc.data().img_1_2)
+                    $('#txt_s1_3').html(doc.data().img_1_3)
+
+                    imgSrc_header = doc.data().header
+                    imgSrc_1_1 = doc.data().img_1_1
+                    imgSrc_1_2 = doc.data().img_1_2
+                    imgSrc_1_3 = doc.data().img_1_3
+
+                    $("#sec_title").val(doc.data().name)
+                    $("#des_title").val(doc.data().title_des)
+                    $("#act_title").val(doc.data().title_act)
+                    $('#sec_body_1 iframe').contents().find('.wysihtml5-editor').html(doc.data().body_1_1);
+                    $('#sec_body_2 iframe').contents().find('.wysihtml5-editor').html(doc.data().body_1_2);
+                    $('#sec_body_3 iframe').contents().find('.wysihtml5-editor').html(doc.data().body_1_3);
+                    $('#sec_body_4 iframe').contents().find('.wysihtml5-editor').html(doc.data().body_act);
+                } else {
+                    console.log("No such document!");
+                }
+            }).catch(function(error) {
+                console.log("Error getting document:", error);
+            });
+
+
+
+            docRefSec_in_item.get().then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+
+                    var myId = doc.id
+                    var _title = doc.data().title
+
+                    var div = '<tr>\n' +
+                        '                            <td>'+_title+'</td>\n' +
+                        '                            <td>\n' +
+                        '                                <div class="btn-group">\n' +
+                        //'                                    <button data-capture="'+myId+'" onclick="editMe(this)" type="button" class="btn btn-default"><i class="fa fa-edit"></i></button>\n' +
+                        '                                    <button data-capture="'+myId+'" onclick="deleteMe(this)" type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>\n' +
+                        '                                </div>\n' +
+                        '                            </td></tr>'
+
+                    $("#bodyTable_act").append(div)
+
+
+                });
+            });
+
+
+
+            docRefSec_in_dest.get().then(function(querySnapshot) {
+                querySnapshot.forEach(function(doc) {
+
+                    numImgInsTotal++
+
+                    var myId = doc.id
+                    var _title = doc.data().link
+
+                    var div = '<tr>\n' +
+                        '                            <td>'+_title+'</td>\n' +
+                        '                            <td>\n' +
+                        '                                <div class="btn-group">\n' +
+                        //'                                    <button data-capture="'+myId+'" onclick="editMe(this)" type="button" class="btn btn-default"><i class="fa fa-edit"></i></button>\n' +
+                        '                                    <button data-capture="'+myId+'" onclick="deleteDest(this)" type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>\n' +
+                        '                                </div>\n' +
+                        '                            </td></tr>'
+
+                    $("#bodyTable_dest").append(div)
+
+
+                });
+            });
+        }
+
+
+
+    })
+
+    //<!-- SAVE -->
+    function saveData()
+    {
+
+        //save interna
+        var _act_title = $("#act_title").val()
+        var _des_title = $("#des_title").val()
+        var _sec_title = $("#sec_title").val()
+        var _sec1_body_1 = $("#sec1_body_txt_1").val()
+        var _sec1_body_2 = $("#sec1_body_txt_2").val()
+        var _sec1_body_3 = $("#sec1_body_txt_3").val()
+        var _sec1_body_4 = $("#sec1_body_txt_4").val()
+
+        if(saveID =="")
+        {
+            docRefSec_intern.add({
+                header:imgSrc_header,
+                name:_sec_title,
+                img_1_1: imgSrc_1_1,
+                img_1_2: imgSrc_1_2,
+                img_1_3: imgSrc_1_3,
+                body_1_1: _sec1_body_1,
+                body_1_2: _sec1_body_2,
+                body_1_3: _sec1_body_3,
+                body_act: _sec1_body_4,
+                title_act: _act_title,
+                title_des: _des_title
+
+
+                }).then(function(docRef) {
+                    saveID = docRef.id
+                    docRefSec_in_item = db.collection('interna').doc(saveID).collection("items")
+                    docRefSec_in_dest = db.collection('interna').doc(saveID).collection("items_dest")
+                    alert("Interna guardada con éxito")
+                })
+                .catch(function(error) {
+                    console.error("Error writing document: ", error);
+                })
+        }else{
+            docRefSec_intern.doc(saveID).set({
+                header:imgSrc_header,
+                name:_sec_title,
+                img_1_1: imgSrc_1_1,
+                img_1_2: imgSrc_1_2,
+                img_1_3: imgSrc_1_3,
+                body_1_1: _sec1_body_1,
+                body_1_2: _sec1_body_2,
+                body_1_3: _sec1_body_3,
+                body_act: _sec1_body_4,
+                title_act: _act_title,
+                title_des: _des_title
+
+                }).then(function() {
+                    alert("Interna guardada con éxito")
+                    console.log("Document successfully written!");
+                })
+                .catch(function(error) {
+                    console.error("Error writing document: ", error);
+                })
+        }
+
+    }
+
+    function saveItem()
+    {
+      //save info others destinys
+      var _item_link = $("#item_link").val()
+
+      if(saveID=="")
+      {
+          alert("No has guardado esta sección aún")
+      }else{
+          docRefSec_in_dest.add({
+              link: _item_link,
+              img: imgSrc_o
+              }).then(function() {
+                  console.log("Document successfully written!");
+                  window.location.href = "page_intern.html?id="+saveID
+
+              })
+              .catch(function(error) {
+                  console.error("Error writing document: ", error);
+              })
+      }
+    }
+
+
+    function saveCarrousel()
+    {
+        //save info carrausel
+        var _item_title = $("#item_title").val()
+        var _item_subTitle = $("#item_subTitle").val()
+
+        if(saveID=="")
+        {
+            alert("No has guardado esta sección aún")
+        }else{
+
+            docRefSec_in_item.add({
+                title: _item_title,
+                subTitle: _item_subTitle,
+                img: imgSrc
+                }).then(function() {
+                    console.log("Document successfully written!");
+                    window.location.href = "page_intern.html?id="+saveID
+
+                })
+                .catch(function(error) {
+                    console.error("Error writing document: ", error);
+                })
+        }
+
+    }
+
+</script>
 </body>
 </html>

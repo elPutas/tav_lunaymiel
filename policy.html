@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-functions.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="fonts/stylesheet.css" type="text/css" charset="utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Póliticas de privacidad</title>
+</head>
+<body>
+  <!-- HEADER -->
+
+          <div class="text-center">
+              <img id="logo_img" src="" width="248" height="144" alt="">
+          </div>
+      <div class="container-fluid bgColorBarHeader"></div>
+
+      <div class="container">
+        <p class="title" id="title"></p>
+        <p id="body"></p>
+      </div>
+<img id="img_foot" class="img-fluid imgFooter" src="">
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<script>
+
+
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyACvxmQZih9JPc_z5Kb0h-IAvcnGwOBugM",
+        authDomain: "lunaymiel-cms.firebaseapp.com",
+        databaseURL: "https://lunaymiel-cms.firebaseio.com",
+        projectId: "lunaymiel-cms",
+        storageBucket: "lunaymiel-cms.appspot.com",
+        messagingSenderId: "671142506834"
+    };
+
+
+    firebase.initializeApp(config);
+    var db = firebase.firestore();
+
+    const settings = {/* your settings... */ timestampsInSnapshots: true};
+    db.settings(settings);
+
+    var docRefGen = db.collection('general_info').doc("info")
+    var docRef = db.collection('policy').doc("info")
+
+
+    $(function()
+    {
+      //load info
+      docRef.get().then(function(doc) {
+          if (doc.exists) {
+            console.log(doc.data());
+              $("#title").html(doc.data().title)
+              $('#body').html(doc.data().body);
+
+          } else {
+              console.log("No such document!");
+          }
+      }).catch(function(error) {
+          console.log("Error getting document:", error);
+      });
+
+        //load general info
+        docRefGen.get().then(function(doc) {
+            if (doc.exists)
+            {
+                var storageRefHeader = firebase.storage().ref("header");
+                var storageRefLogo = firebase.storage().ref("logo");
+                var storageRefFoot = firebase.storage().ref("footer");
+
+                storageRefHeader.child(doc.data().header).getDownloadURL()
+                    .then(function(url) {
+                    $('#header_img').attr("src",url);
+                })
+
+                storageRefLogo.child(doc.data().logo).getDownloadURL()
+                    .then(function(url) {
+                    $('#logo_img').attr("src",url);
+                    $('#logo_img_m').attr("src",url);
+                })
+
+                storageRefFoot.child(doc.data().footer).getDownloadURL()
+                    .then(function(url) {
+                      console.log(url)
+                    $('#img_foot').attr("src",url);
+                })
+
+            } else {
+                console.log("No such document!");
+            }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+        });
+
+
+    });
+
+
+
+</script>
+</html>

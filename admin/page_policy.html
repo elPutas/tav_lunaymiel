@@ -7,7 +7,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLUNAYMIEL</title>
+    <title>AdminLUNAYMIEL_policy</title>
+
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-functions.js"></script>
+
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -31,6 +39,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
 
     <!-- Google Font -->
     <link rel="stylesheet"
@@ -101,10 +111,10 @@ desired effect
 
             <!-- Sidebar Menu -->
             <ul class="sidebar-menu" data-widget="tree">
-                <li class="header">HEADER</li>
+                <li class="header">SECCIONES</li>
                 <!-- Optionally, you can add icons to the links -->
                 <li><a href="starter.html"><i class="fa fa-link"></i> <span>Index</span></a></li>
-                <li><a href="page_intern.html"><i class="fa fa-link"></i> <span>Internas</span></a></li>
+                <li><a href="pre_page_intern.html?id="><i class="fa fa-link"></i> <span>Internas</span></a></li>
                 <li class="treeview menu-open active">
                     <a href="#"><i class="fa fa-link"></i> <span>Páginas genéricas</span>
                         <span class="pull-right-container">
@@ -134,209 +144,31 @@ desired effect
         <!-- Main content -->
         <section class="content container-fluid">
 
-            <div class="row">
 
-                <div class="col-md-6">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">
-                                Header
-                                <small>Solo imagen</small>
-                            </h3>
-
-                            <div class="box-body">
-                                <div class="form-group">
-
-                                    <input type="file" id="img_h">
-
-                                    <p class="help-block">primera imagen</p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6">
-                    <div class="box">
-                        <div class="box-header">
-                            <h3 class="box-title">
-                                Logo
-                                <small>Solo imagen</small>
-                            </h3>
-
-                            <div class="box-body">
-                                <div class="form-group">
-
-                                    <input type="file" id="img_logo">
-
-                                    <p class="help-block">logo site</p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-
-
-            </div>
-
-            <div class="box">
-                <div class="box-header">
-                    <input type="text" placeholder="Policy">
-                    <small>Políticas de privacidad</small>
-
-                    <!-- tools box -->
-                    <div class="pull-right box-tools">
-                        <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
-                                title="Collapse">
-                            <i class="fa fa-minus"></i></button>
-
-                    </div>
-                    <!-- /. tools -->
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body pad">
-                    <form>
-                <textarea class="textarea" placeholder="Place some text here"
-                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                    </form>
-
-
-
-                    <small>imágen</small>
-
-
-                    <div class="row list-inline">
-
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <input type="file" id="img_s2_1">
-                                <p class="help-block">desktop</p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-
-            </div>
-
-
-
-
-
-
-
-            <div class="box">
-                <div class="box-header">
-
-
-                    <h4>Información footer</h4>
-                    <!-- tools box -->
-                    <div class="pull-right box-tools">
-                        <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
-                                title="Collapse">
-                            <i class="fa fa-minus"></i></button>
-
-                    </div>
-                    <!-- /. tools -->
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body pad">
-
-                    <div class="form-horizontal">
-                        <div class="form-group">
-                            <label for="inputEmail1" class="col-sm-2 control-label">Teléfono</label>
-
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="inputEmail1" placeholder="Teléfono">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="inputEmail2" class="col-sm-2 control-label">Email</label>
-
-                            <div class="col-sm-9">
-                                <input type="email" class="form-control" id="inputEmail2" placeholder="Email">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label">Dirección</label>
-
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="inputEmail3" placeholder="Dirección">
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="inputEmail4" class="col-sm-2 control-label">Copyright</label>
-
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="inputEmail4" placeholder="Copyright">
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="inputEmail5" class="col-sm-2 control-label">Copy footer</label>
-
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="inputEmail5" placeholder="Copy">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="fb" class="col-sm-2 control-label">Link Facebook</label>
-
-                            <div class="col-sm-9">
-                                <input t
-                                       ype="text" class="form-control" id="fb" placeholder="URL">
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="tw" class="col-sm-2 control-label">Link Facebook</label>
-
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="tw" placeholder="URL">
-                            </div>
-                        </div>
-
-
-                        <div class="form-group">
-                            <label for="in" class="col-sm-2 control-label">Link Instagram</label>
-
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control" id="in" placeholder="URL">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="in" class="col-sm-2 control-label">imágen footer</label>
-
-                            <div class="col-sm-9">
-                                <input type="file" >
-                            </div>
-                        </div>
-
-                    </div>
-
-
-                    <!-- /.box-body -->
-                </div>
-
-
-            </div>
-
-
-
-            <button class="btn btn-lg btn-success pull-right"><i class="fa fa-save"></i> Guardar</button>
+                      <div class="box">
+                          <div class="box-header">
+                              <input id="title" type="text" placeholder="Policy">
+                              <small>Póliticas de privacidad</small>
+
+                              <!-- tools box -->
+                              <div class="pull-right box-tools">
+                                  <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"
+                                          title="Collapse">
+                                      <i class="fa fa-minus"></i></button>
+
+                              </div>
+                              <!-- /. tools -->
+                          </div>
+                          <!-- /.box-header -->
+                          <div id="body_cont" class="box-body pad">
+                              <form >
+                                <textarea id="body_txt" class="textarea" placeholder="Place some text here"
+                                    style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                              </form>
+                          </div>
+                      </div>
+
+                      <button onclick="saveData()"  class="btn btn-lg btn-success pull-right"><i class="fa fa-save"></i> Guardar</button>
 
         </section>
         <!-- /.content -->
@@ -366,10 +198,78 @@ desired effect
 <!-- Bootstrap WYSIHTML5 -->
 <script src="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
 <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyACvxmQZih9JPc_z5Kb0h-IAvcnGwOBugM",
+        authDomain: "lunaymiel-cms.firebaseapp.com",
+        databaseURL: "https://lunaymiel-cms.firebaseio.com",
+        projectId: "lunaymiel-cms",
+        storageBucket: "lunaymiel-cms.appspot.com",
+        messagingSenderId: "671142506834"
+    };
+
+
+    firebase.initializeApp(config);
+    var db = firebase.firestore();
+
+    const settings = {/* your settings... */ timestampsInSnapshots: true};
+    db.settings(settings);
+
+    var docRef = db.collection('policy').doc("info")
+
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            // User is signed in.
+            console.log(user)
+
+            // ...
+        } else {
+            // User is signed out.
+            console.log("no user")
+            window.location.href = "index.html"
+            // ...
+        }
+    });
+
+
     $(function () {
 
         $('.textarea').wysihtml5()
+
+
+        //load info
+        docRef.get().then(function(doc) {
+            if (doc.exists) {
+              console.log($('#body_txt').contents().find('.wysihtml5-editor'));
+                $("#title").val(doc.data().title)
+                $('#body_cont iframe').contents().find('.wysihtml5-editor').html(doc.data().body);
+
+            } else {
+                console.log("No such document!");
+            }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+        });
     })
+
+    function saveData()
+    {
+      var _title = $("#title").val()
+      var _body = $("#body_txt").val()
+
+      //save info
+      docRef.set({
+          body: _body,
+          title: _title
+
+          }).then(function() {
+              alert("Guardado con éxito")
+              console.log("Document successfully written!");
+          })
+          .catch(function(error) {
+              console.error("Error writing document: ", error);
+          })
+    }
 </script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
