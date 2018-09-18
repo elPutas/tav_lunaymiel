@@ -3,8 +3,18 @@ body{
     font-size: 1.5rem !important;
 }
 
+#myCarousel{
+  width: 100%;
+  text-align: center;
+}
+
 .btn{
     font-size: 1.7rem !important;
+}
+
+.removeSpaces{
+      padding: 0 !important;
+      margin: 0 !important;
 }
 
 .contactBox{
@@ -18,6 +28,16 @@ body{
     margin-right: auto;
     position: relative;
 
+}
+#mapList{
+  text-align: center;
+  width: 100%;
+  mix-blend-mode: darken;
+}
+#imgMap{
+  margin-left: -7px;
+  margin-top: 50px;
+  margin-bottom: -50px;
 }
 
 .imgFooter{
@@ -141,6 +161,7 @@ body{
     height: 10px;
 }
 .title{
+  width: 100%;
   margin-top: 50px;
 font-family: 'latoblack' !important;
 color: #BDA16B;
@@ -185,6 +206,7 @@ font-size: 22pt;
 }
 
 .bgSection2{
+  text-align: center;
     background-image: url("../img/h2.png");
     background-repeat: no-repeat;
     background-size: contain;
@@ -317,6 +339,11 @@ hr {
   width: 350px;
 }
 
+.containerNewD{
+  background-color: #ffffffbf;
+    padding: 20px;
+}
+
 .centerSmall{
     width: 80%;
     margin-left: auto;
@@ -383,7 +410,7 @@ hr {
 }
 
 #carouselContainer{
-  height: 315px;
+
 
 }
 
@@ -394,10 +421,12 @@ hr {
         background-size: cover;
         padding-top: 120px;
         height: 1200px;
+        text-align: center;
 
     }
 
     .title{
+      width: 100%;
         text-align: center;
         font-size: 16pt;
         letter-spacing: 5px;

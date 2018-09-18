@@ -135,11 +135,17 @@
     <div class="container-fluid bgSection2" >
 
 
-        <div class="container " id="section2">
-            <div class="containerSection d-none d-md-block"></div>
+        <div class="container containerNewD" id="section2">
+            <div class=" d-none d-md-block"></div>
             <div class="row">
 
-                <div class="col-xl-6 col-md-6 col-xs-12">
+              <h2 id="title_sec_2" class="title"></h2>
+
+
+              <ul id="mapList" class="list-inline removeSpaces">
+              </ul>
+
+                <div class="col-xl-12">
                     <!--Carousel Wrapper-->
                     <div id="myCarousel" class="carousel slide carousel-multi-item carousel-multi-item-2 " data-ride="carousel" >
 
@@ -153,14 +159,18 @@
 
 
                         </div>
+
+                        <ul id="btns_cont" class="nav nav-pills nav-fill navSections2 d-block d-sm-none">
+
+                        </ul>
                         <!--/.Slides-->
 
                         <!--Controls-->
                         <div class="row">
-                            <div class="col-md-10 col-xs-8">
+                            <div class="col-md-9 col-xs-8">
                                 <p id="counterCarousel" class="controls-custom"></p>
                             </div>
-                            <div class="col-md-2 col-xs-4">
+                            <div class="col-md-1 col-xs-2">
                                 <div class="controls-custom">
                                     <a class="black-text" href="#myCarousel" data-slide="prev">
                                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -170,23 +180,13 @@
                                     </a>
                                 </div>
                             </div>
+                            <div class="col-md-2 col-xs-2"></div>
                         </div>
                         <!--/.Controls-->
                     </div>
                     <!--/.Carousel Wrapper-->
                 </div>
 
-                <div class="col-xl-6 col-md-6 col-xs-12">
-
-                    <h2 id="title_sec_2" class="title"></h2>
-                    <p id="body_carrousel" class="ml-lg-5 ml-xs-0 bodyText">
-
-                    </p>
-
-                    <ul id="btns_cont" class="nav nav-pills nav-fill navSections2">
-
-                    </ul>
-                </div>
 
             </div>
                 <div class="row ">
@@ -438,7 +438,7 @@
 
                 });
 
-                $('#body_carrousel').html(doc.data().body)
+
 
 
             }else {
@@ -503,6 +503,7 @@
 
 
         var _justOnceC = true
+        var _numConts = 0
         //load seccion2
         docRefSec_2.get().then(function(querySnapshot) {
             querySnapshot.forEach(function(doc) {
@@ -552,7 +553,7 @@
                               '                                        </div>' +
                               '                                     </a></li>'
 
-                              var howMany = 6
+                              var howMany = 5
                               if($(window).width() < 573)
                                 howMany = 4
                               if(just3<howMany)
@@ -581,17 +582,25 @@
                       });
                   });
 
-                  $('#body_carrousel').html(doc.data().body)
+
                   _justOnceC = false
                 }
 
 
+                _numConts++
 
-                var div = '<li class="nav-item">\n' +
+                var div = '<li class="removeSpaces"  >'+
+                              '<a data-capture="'+myId+'" onclick="onChangeCont(this)" class="nav-link removeSpaces d-none d-sm-block">'+
+                                '<img id="imgMap" src="img/btns/btn_car_'+_numConts+'.png"/>' +
+                              '</a>\n' +
+                          '</li>'
+
+                var div_sm = '<li class="nav-item">\n' +
                     '                            <a data-capture="'+myId+'" onclick="onChangeCont(this)" class="nav-link ">'+_title+'</a>\n' +
                     '                        </li>'
 
-                $("#btns_cont").append(div)
+                $("#mapList").append(div)
+                $("#btns_cont").append(div_sm)
 
 
             });
@@ -623,7 +632,7 @@
                 var _img = doc.data().img
 
 
-                $('#body_carrousel').html(doc.data().body)
+
 
                 var div = '<div class="col-xl-3 col-md-5 col-xs-12 textCenter">\n' +
                     '                <img src="img/'+_img+'">\n' +
