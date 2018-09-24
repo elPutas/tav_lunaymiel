@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.12.1/firebase-functions.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="fonts/stylesheet.css" type="text/css" charset="utf-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>LUNA Y MIEL</title>
+</head>
+<body>
+    <div class="container-fluid ">
+
+        <!-- HEADER -->
+        <nav id="nav" class="navbar fixed-top d-none d-sm-none d-md-none d-lg-block centerHeader bgColorHeader">
+            <a class="navbar-brand" href="#">
+                <div class="container">
+                    <a class="offset-btn p-2" href="index.html#init">INICIO</a>
+                    <a class="offset-btn p-2" href="index.html#section2">DESTINO</a>
+                    <img id="logo_img" src="" width="248" height="144" alt="">
+                    <a class="offset-btn p-2 " href="index.html#section3">CÓMO FUNCIONA</a>
+                    <a class="offset-btn p-2" href="index.html#section4">CONTACTO</a>
+                </div>
+            </a>
+
+            <div class="container-fluid bgColorBarHeader"></div>
+        </nav>
+
+        <!-- HEADER MD -->
+        <nav id="navMD" class="navbar fixed-top d-none d-sm-block d-md-block d-lg-none centerHeader bgColorHeader">
+
+            <div class="container">
+                <a class="nav-sm-md-btn p-2" href="index.html#init">INICIO</a>
+                <a class="nav-sm-md-btn p-2" href="index.html#section2">DESTINO</a>
+                <img id="logo_img_m" src="" width="104" height="50" alt="">
+                <a class="nav-sm-md-btn p-2" href="index.html#section3">CÓMO FUNCIONA</a>
+                <a class="nav-sm-md-btn p-2" href="index.html#section4">CONTACTO</a>
+            </div>
+
+            <div class="container-fluid bgColorBarHeader-sm"></div>
+        </nav>
+
+
+        <!-- HEADER XS -->
+        <nav id="navXS" class="navbar fixed-top navbar-light navbar-toggleable-md d-block d-sm-none bgColorBarHeader-xs">
+
+            <div class="row" style="flex-wrap: nowrap;margin-right: 5px;">
+
+                <div class="col-2">
+                    <button class="navbar-toggler visible-xs mx-auto order-0" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="glyphicon glyphicon-menu-hamburger iconHeader-xs-phone"></span>
+                    </button>
+                </div>
+
+                <div class="col-8">
+                    <p class="titleHeader-xs">LUNA Y MIEL</p>
+                </div>
+
+                <div class="col-2">
+                    <button style="-webkit-appearance: none;border-radius: 0;border: 0;">
+                        <span class="glyphicon glyphicon-earphone iconHeader-xs-phone"></span>
+                    </button>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+
+                    <ul class="navbar-nav mr-auto  bgColorHeader menuFloat">
+                        <li class="nav-item active">
+                            <a class="nav-link ml-3 menuBtnHeader-xs" href="#init">INICIO<hr></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link ml-3 menuBtnHeader-xs" href="#section2">DESTINO<hr></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link ml-3 menuBtnHeader-xs" href="#section3">COMO FUNCIONA<hr></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link ml-3 menuBtnHeader-xs" href="#section4">CONTACTO<hr></a>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+
+    </div>
+
+
+    <div class="bodyMargin" id="init"></div>
+
+    <h3 id="titleReg">
+
+    </h3>
+
+    <p id="subtitleReg">
+
+    </p>
+
+
+    <!-- HOME -->
+    <div class="container" id="section2">
+
+        <div class="centerSmall ">
+
+
+
+            <div class="d-none d-sm-block"></div>
+                <div class="row ">
+
+                <div class="col-md-12">
+                    <!--Carousel Wrapper-->
+                    <div id="myCarousel" class="carousel slide carousel-multi-item carousel-multi-item-2 " data-ride="carousel">
+                        <!--Slides-->
+                        <div id="mainCarrousel" class="carousel-inner marginContainer" role="listbox">
+
+                        </div>
+                        <!--/.Slides-->
+
+                        <!--Controls-->
+                        <div class="row">
+                            <div class="col-sm-8 col-2">
+                                <!--p class="controls-custom">01/03</p-->
+                            </div>
+                            <div class="col-sm-4 col-10">
+                                <div class="controls-custom">
+                                    <a class="black-text" href="#myCarousel" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    </a>
+                                    <a class="black-text" href="#myCarousel" data-slide="next">
+                                        <span class="carousel-control-next-icon " aria-hidden="true"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <!--/.Controls-->
+                    </div>
+                    <!--/.Carousel Wrapper-->
+                </div>
+
+                <div class="col-xl-6 col-md-6 col-xs-12">
+
+                    <h2 id="title_act" class="subtitle"></h2>
+                    <p id="body_act" class="ml-lg-5 ml-xs-0 bodyText">
+
+                    </p>
+
+
+                </div>
+
+            </div>
+            <div class="row ">
+                <div class="col-12">
+                    <h2 id="title_des" class="title titleSection3"></h2>
+
+                    <!--Carousel Wrapper-->
+
+                        <!--/.Carousel Wrapper-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- OTROS DESTINOS-->
+        <div class="container" id="section3">
+            <h2 class="title titleSection3 d-none d-sm-block"></h2>
+
+            <div id="otherContainer" class="row justify-content-center">
+
+            </div>
+
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+
+        <!-- CONTACTO-->
+
+        <div class="container" id="section4">
+            <div class="contactBox">
+                <p class="titleContact">CONTACTO</p>
+
+                <p class="bodyContact">¡Hola! Mi nombre es<input type="text" placeholder="(Tu nombre)">,<input type="text" placeholder="(Tu apellido)"> me puedes contactar en <input type="text" placeholder="(Tu correo)"> o llamar al <input type="text" placeholder="(Tu teléfono)"> me gustaría recibir más información acerca de sus planes. </p>
+
+                <div class="row contactBottom justify-content-center">
+
+                    <div class="col-lg-4 col-md-8 d-none d-sm-block">
+                        <img src="img/ico_contact.png">
+                    </div>
+                    <div class="col-lg-4 col-md-8">
+                        <p>P.S. <input type="text" placeholder="(Comentario adicional)"></p>
+                        <p class="policyText">Acepto la pólitica de protección de datos</p>
+                    </div>
+                    <div class="col-lg-4 col-md-8">
+                        <button class="btn btn-primary btnContact">ENVIAR</button>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+
+        <img id="img_foot" class="img-fluid imgFooter" src="">
+
+        <div class="container centerFooter">
+            <div id="footer" class="row">
+                <div class="col-sm-3 col-xs-12">
+                  <p>LLAMA YA</p>
+                  <a style="font-size:  12pt; display:-webkit-inline-box" class="fa fa-phone"><p id="foot_phone">></p></a>
+                  <br>
+                  <a style="font-size:  12pt; display:-webkit-inline-box" class="fa fa-envelope">  <p id="foot_mail"></p></a>
+                  <br>
+                  <a style="font-size:  18pt; display:-webkit-inline-box" class="fa fa-map-marker">  <p id="foot_address"></p></a>
+
+              </div>
+
+              <div class="col-sm-3 col-xs-12">
+                <p><a href="faq.html" target="_blank">PREGUNTAS FRECUENTES</a></p>
+                <p><a href="tyc.html" target="_blank">TÉRMINOS Y CONDICIONES</a></p>
+                <p><a href="policy.html" target="_blank">POLÍTICA DE DATOS</a></p>
+              </div>
+
+              <div class="col-sm-6 d-none d-sm-block">
+                  <p id="foot_copy" class="bodyTextFooter">
+                  </p>
+
+                  <ul class="list-inline">
+                      <li><a href="#init">INICIO</a></li>
+                      <li><a href="#section2">DESTINO</a></li>
+                      <li><a href="#section3">CÓMO FUNCIONA</a></li>
+                      <li><a href="#section4">CONTACTO</a></li>
+                  </ul>
+
+                  <ul id="social_btns" class="list-inline">
+                      <li><a id="link_tw" class="fa fa-twitter" href=""></a></li>
+                      <li><a id="link_fb" class="fa fa-facebook" href=""></a></li>
+                      <li><a id="link_in" class="fa fa-instagram" href=""></a></li>
+                  </ul>
+              </div>
+
+
+          </div>
+          <p id="foot_copyright" class="footerText"></p>
+        </div>
+
+
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.js" ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<script>
+//GET PARAMS
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
+
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyACvxmQZih9JPc_z5Kb0h-IAvcnGwOBugM",
+    authDomain: "lunaymiel-cms.firebaseapp.com",
+    databaseURL: "https://lunaymiel-cms.firebaseio.com",
+    projectId: "lunaymiel-cms",
+    storageBucket: "lunaymiel-cms.appspot.com",
+    messagingSenderId: "671142506834"
+};
+
+
+firebase.initializeApp(config);
+var db = firebase.firestore();
+
+const settings = {/* your settings... */ timestampsInSnapshots: true};
+db.settings(settings);
+
+var saveID = getUrlParameter('id');
+
+//var docRefSec_intern = db.collection('interna').doc(saveID)
+
+var docRefFooter = db.collection('footer_info').doc("info")
+var docRefGen = db.collection('general_info').doc("info")
+var docRefReg = db.collection('registros').doc("info")
+//var docRefSec_in_dest = db.collection('interna').doc(saveID).collection("items_dest")
+//var docRefSec_in_item = db.collection('interna').doc(saveID).collection("items")
+
+    $(function()
+    {
+      //load
+
+
+
+        //load footer
+        docRefFooter.get().then(function(doc){
+          if(doc.exists)
+          {
+            $("#foot_phone").text(doc.data().phone)
+            $("#foot_address").text(doc.data().address)
+            $("#foot_mail").text(doc.data().email)
+            $("#foot_copy").html(doc.data().copy)
+            $("#foot_copyright").html(doc.data().copyright)
+          }
+        })
+
+        $('#myCarousel').carousel({
+            interval:2000000,
+            pause: "true"
+        });
+        $('#myCarouselSM').carousel({
+            interval:2000000,
+            pause: "true"
+        });
+
+
+        //load general info
+        docRefGen.get().then(function(doc) {
+            if (doc.exists)
+            {
+                var storageRefHeader = firebase.storage().ref("header");
+                var storageRefLogo = firebase.storage().ref("logo");
+                var storageRefFoot = firebase.storage().ref("footer");
+
+                $('#title_sec_2').html(doc.data().titleSec2)
+
+                //console.log("storageRefHeader", doc.data().header)
+
+                storageRefFoot.child(doc.data().footer).getDownloadURL()
+                    .then(function(url) {
+                    $('#img_foot').attr("src",url);
+                })
+
+                storageRefHeader.child(doc.data().header).getDownloadURL()
+                    .then(function(url) {
+                    $('#header_img').attr("src",url);
+                })
+
+                storageRefLogo.child(doc.data().logo).getDownloadURL()
+                    .then(function(url) {
+                    $('#logo_img').attr("src",url);
+                    $('#logo_img_m').attr("src",url);
+                })
+
+                //$('#img_foot').attr("src","gs://lunaymiel-cms.appspot.com/footer/"+doc.data().footer);
+
+            } else {
+                console.log("No such document!");
+            }
+        }).catch(function(error) {
+            console.log("Error getting document:", error);
+        });
+
+
+
+
+        docRefReg.get().then(function(doc){
+          if(doc.exists)
+          {
+            var _title = doc.data().title
+            var _subtitle = doc.data().body
+            $('#titleReg').text(_title)
+            $('#subtitleReg').html(_subtitle)
+
+          }
+        })
+
+        //load carrousel
+        var _justOnce = true
+        var _justOnce2 = true
+        var times = 0
+        docRefReg.collection("registros_info").get().then(function(querySnapshot)
+        {
+
+            querySnapshot.forEach(function(doc)
+            {
+                // doc.data() is never undefined for query doc snapshots
+                console.log(doc.id, " => ", doc.data());
+
+
+                var _div
+                var _date = doc.data().date
+                var _country = doc.data().country
+                var _title = doc.data().title
+                var _link = doc.data().link
+                var _copy = doc.data().copy
+
+                console.log("doc.data().title",doc.data().title)
+
+                var storageRefSec1 = firebase.storage().ref("registros");
+                storageRefSec1.child(doc.data().img).getDownloadURL()
+                    .then(function(url) {
+                      var _img = url
+
+                      var myRow = '<div class="row ">'+
+
+                          '<div class="col-12 ">'+
+                              '<div class=" mb-3 itemRegistro">'+
+                                '<div class="row ">'+
+                                  '<div class="col-3 ">'+
+                                      '<img class="img-fluid rounded-circle imgRound" src="'+_img+'" >'+
+                                  '</div>'+
+
+                                  '<div class="col-7 ">'+
+
+                                    '<ul class="list-inline mb-0">'+
+                                      '<li>'+
+                                        '<p class="titleItemReg" >'+_title+'</p>'+
+                                      '</li>'+
+                                      '<li>'+
+                                        '<p class="paisItemReg" >'+" - "+_country+'</p>'+
+                                      '</li>'+
+                                    '</ul>'+
+
+                                    '<p class="subtitleItemReg" >'+_copy+'</p>'+
+                                    '<p class="minititleItemReg" >'+_date+'</p>'+
+                                  '</div>'+
+
+                                  '<div class="col-2 ">'+
+                                      '<div class="btnVer"  >'+
+                                      '</div>'+
+                                        '<p class="txtVer" >'+"VER"+'</p>'+
+
+                                  '</div>'+
+
+
+                                '</div>'+
+                              '</div>'+
+                          '</div>'+
+
+                      '</div>'
+
+                      if(_justOnce)
+                      {
+                        if(_justOnce2)
+                        {
+                          _div = '<div class="actives carousel-item active">'+'</div>'
+                          _justOnce2 = false
+                          $('#mainCarrousel').append(_div)
+                        }
+
+                        if(times==2)
+                          _justOnce = false
+                        $('.actives').append(myRow)
+                      }
+                      else
+                      {
+                        if(!_justOnce2)
+                        {
+                          _div = '<div class="noactive carousel-item">'+'</div>'
+                          $('#mainCarrousel').append(_div)
+                          _justOnce2 = true
+                        }
+                        if(times==2)
+                          _justOnce2 = false
+                        $('.noactive').append(myRow)
+                      }
+
+                      times++
+                      times%=3
+
+
+
+                      //console.log(_div)
+
+                })
+            });
+        });
+
+
+
+        //nav animation
+        $("#nav a[href^='#']").on('click', function(e)
+        {
+            // prevent default anchor click behavior
+            e.preventDefault();
+
+            // store hash
+            var hash = this.hash;
+
+            // animate
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 300, function(){
+                window.location.hash = hash;
+            });
+        });
+
+
+
+
+        //nav-md animation
+        $("#navMD a[href^='#']").on('click', function(e)
+        {
+            // prevent default anchor click behavior
+            e.preventDefault();
+
+            // store hash
+            var hash = this.hash;
+
+            // animate
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 300, function(){
+                window.location.hash = hash;
+            });
+        });
+
+        //nav-xs animation
+        $("#navXS ul li a[href^='#']").on('click', function(e)
+        {
+            // prevent default anchor click behavior
+            e.preventDefault();
+
+            // store hash
+            var hash = this.hash;
+
+            // animate
+            $('html, body').animate({
+                scrollTop: $(hash).offset().top
+            }, 300, function(){
+                window.location.hash = hash;
+            });
+        });
+
+
+        $('.navbar-nav>li>a').on('click', function(){
+            $('.navbar-collapse').collapse('hide');
+        });
+
+
+    });
+
+
+
+</script>
+</html>
