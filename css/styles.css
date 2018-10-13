@@ -2,10 +2,21 @@ body{
     font-family: 'latoregular' !important;
     font-size: 1.5rem !important;
 }
+a:hover {
+ cursor:pointer;
+}
+
+.filter{
+  filter: sepia(80%);
+}
 
 #myCarousel{
   width: 100%;
   text-align: center;
+}
+
+#link_tw{
+  display: none;
 }
 
 .imgRound{
@@ -140,15 +151,13 @@ text-align: center;
 
 
 #titleReg{
-  color: #BDA16B;
-    font-size: 30pt;
+
     text-align: center;
     padding-top: 60px;
 }
 #subtitleReg{
   text-align: center;
-  font-size: 18pt;
-  color: #757774;
+
   padding-top: 30px;
   padding-left: 140px;
   padding-right: 140px;

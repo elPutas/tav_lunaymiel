@@ -28,9 +28,9 @@
         <a class="navbar-brand" href="#">
             <div class="container">
                 <a class="offset-btn p-2" href="#init">INICIO</a>
-                <a class="offset-btn p-2" href="#section2">DESTINO</a>
+                <a class="offset-btn p-2" href="#section2">DESTINOS</a>
                 <a class="offset-btn p-2" href="paquetes.html">PAQUETES</a>
-                <img id="logo_img" src="" width="248" height="144" alt="">
+                <a class="offset-btn p-2" href="index.html"><img id="logo_img" src="" width="248" height="144" alt=""></a>
                 <a class="offset-btn p-2 " href="registros.html">NOVIOS</a>
                 <a class="offset-btn p-2 " href="#section3">CÓMO FUNCIONA</a>
                 <a class="offset-btn p-2" href="#section4">CONTACTO</a>
@@ -45,7 +45,7 @@
 
                 <div class="container">
                     <a class="nav-sm-md-btn p-2" href="#init">INICIO</a>
-                    <a class="nav-sm-md-btn p-2" href="#section2">DESTINO</a>
+                    <a class="nav-sm-md-btn p-2" href="#section2">DESTINOS</a>
                     <a class="offset-btn p-2" href="paquetes.html">PAQUETES</a>
                     <img id="logo_img_m" src="" width="104" height="50" alt="">
                     <a class="offset-btn p-2 " href="registros.html">NOVIOS</a>
@@ -85,7 +85,7 @@
                             <a class="nav-link ml-3 menuBtnHeader-xs" href="#init">INICIO<hr></a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link ml-3 menuBtnHeader-xs" href="#section2">DESTINO<hr></a>
+                            <a class="nav-link ml-3 menuBtnHeader-xs" href="#section2">DESTINOS<hr></a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link ml-3 menuBtnHeader-xs" href="paquetes.html">PAQUETES<hr></a>
@@ -162,8 +162,7 @@
                         <!--Slides-->
                         <div id="carouselContainer" class="carousel-inner marginContainer" role="listbox">
                             <div class="carousel-item active">
-                                <ul id="slidesCarrousel_active" class="list-inline">
-                                </ul>
+                                <ul id="slidesCarrousel_active" class="list-inline"></ul>
                             </div>
 
 
@@ -304,7 +303,7 @@
 
                 <ul class="list-inline">
                     <li><a href="#init">INICIO</a></li>
-                    <li><a href="#section2">DESTINO</a></li>
+                    <li><a href="#section2">DESTINOS</a></li>
                     <li><a href="#section3">CÓMO FUNCIONA</a></li>
                     <li><a href="#section4">CONTACTO</a></li>
                 </ul>
@@ -357,14 +356,21 @@
     var just3 = 0
     var justOnceInside = true
     var oldDiv
-
+var numToshow
     function onChangeCont(_this)
     {
         console.log(_this)
 
+
+        $(_this).addClass('filter')
+
+
         $(_this).addClass("active")
         if(oldDiv)
+        {
+            $(oldDiv).removeClass("filter")
             $(oldDiv).removeClass("active")
+        }
 
         oldDiv = _this
 
@@ -438,12 +444,16 @@
                                 }
 
                             just3++
-                            $('#counterCarousel').html('01/0'+(Math.round(just3/howMany)+1))
+                            numToshow = Math.floor(just3/howMany)
+
+                            $('#counterCarousel').html('01/0'+(numToshow + 1))
+
                           })
                         }
 
 
                     });
+
 
 
                 });
@@ -563,7 +573,7 @@
                               '                                        </div>' +
                               '                                     </a></li>'
 
-                              var howMany = 5
+                              var howMany = 6
                               if($(window).width() < 573)
                                 howMany = 4
                               if(just3<howMany)
@@ -587,7 +597,7 @@
                               }
 
                               just3++
-                              $('#counterCarousel').html('01/0'+(Math.round(just3/howMany)+1))
+                              $('#counterCarousel').html('01/0'+(Math.floor(just3/howMany)+1))
                           })
                       });
                   });
@@ -601,7 +611,7 @@
 
                 var div = '<li class="removeSpaces"  >'+
                               '<a data-capture="'+myId+'" onclick="onChangeCont(this)" class="nav-link removeSpaces d-none d-sm-block">'+
-                                '<img id="imgMap" src="img/btns/btn_car_'+_numConts+'.png"/>' +
+                                '<img id="imgMap" class="_imgMap" src="img/btns/btn_car_'+_numConts+'.png"/>' +
                               '</a>\n' +
                           '</li>'
 
@@ -633,27 +643,44 @@
             })
 
 
+        var storageRefIns = firebase.storage().ref("instrucciones");
+        var arrImg_ins = []
+        var currentImg_ins = 0
         //load instructions
-        docRefSec_ins.get().then(function(querySnapshot) {
+        docRefSec_ins.orderBy("img", "asc").get().then(function(querySnapshot)
+        {
+          arrImg_ins = []
             querySnapshot.forEach(function(doc) {
                 // doc.data() is never undefined for query doc snapshots
                 //console.log(doc.id, " => ", doc.data());
                 var myId = doc.id
                 var _img = doc.data().img
 
+                arrImg_ins.push(_img)
+
+            });
+
+            if(arrImg_ins.length > 0)
+              loadImgIns(arrImg_ins[currentImg_ins])
+        });
 
 
-
+        function loadImgIns(_img)
+        {
+          storageRefIns.child(_img).getDownloadURL()
+              .then(function(url)
+              {
                 var div = '<div class="col-xl-3 col-md-5 col-xs-12 textCenter">\n' +
-                    '                <img src="img/'+_img+'">\n' +
+                    '                <img src="'+url+'">\n' +
                     '            </div>'
 
                 $("#containerInstructions").append(div)
 
-
-            });
-        });
-
+                currentImg_ins++
+                if(currentImg_ins<arrImg_ins.length)
+                  loadImgIns(arrImg_ins[currentImg_ins])
+          })
+        }
 
         //load footer
         docRefFooter.get().then(function(doc){
@@ -725,10 +752,15 @@
 
             if (target.length)
             {
-              $('html,body').animate({
-                scrollTop: target.offset().top - headerHeight
-              }, 500);
-              return false;
+              if(target[0].id != "myCarousel")
+              {
+                $('html,body').animate({
+                  scrollTop: target.offset().top - headerHeight
+                }, 500);
+                return false;
+
+              }
+
             }
           }
         });
