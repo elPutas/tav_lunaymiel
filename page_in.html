@@ -243,21 +243,23 @@
             <div class="contactBox">
                 <p class="titleContact">CONTACTO</p>
 
-                <p class="bodyContact">¡Hola! Mi nombre es<input type="text" placeholder="(Tu nombre)">,<input type="text" placeholder="(Tu apellido)"> me puedes contactar en <input type="text" placeholder="(Tu correo)"> o llamar al <input type="text" placeholder="(Tu teléfono)"> me gustaría recibir más información acerca de sus planes. </p>
+                <form action="php/sendmail.php" method="POST" id="emailForm">
+                    <p class="bodyContact">¡Hola! Mi nombre es<input type="text" placeholder="(Tu nombre)" name="nameInput" id="nameInput" value="">,<input name="lastnameInput" id="lastnameInput" value="" type="text" placeholder="(Tu apellido)"> me puedes contactar en <input name="emailInput" id="emailInput" value="" type="text" placeholder="(Tu correo)"> o llamar al <input name="telInput" id="telInput" value="" type="text" placeholder="(Tu teléfono)"> me gustaría recibir más información acerca de sus planes. </p>
 
-                <div class="row contactBottom justify-content-center">
-
-                    <div class="col-lg-4 col-md-8 d-none d-sm-block">
-                        <img src="img/ico_contact.png">
+                    <div class="row contactBottom justify-content-center">
+                        <div class="col-lg-4 col-md-8 d-none d-sm-block">
+                            <img src="img/ico_contact.png">
+                        </div>
+                        <div class="col-lg-4 col-md-8">
+                            <p>P.S. <input type="text" placeholder="(Comentario adicional)"></p>
+                            <p class="policyText">Acepto la pólitica de protección de datos</p>
+                        </div>
+                        <div class="col-lg-4 col-md-8">
+                            <input class="btn btn-primary btnContact" type="submit" id="submitBtn" value="ENVIAR" />
+                            <!--button class="btn btn-primary btnContact">ENVIAR</button-->
+                        </div>
                     </div>
-                    <div class="col-lg-4 col-md-8">
-                        <p>P.S. <input type="text" placeholder="(Comentario adicional)"></p>
-                        <p class="policyText">Acepto la pólitica de protección de datos</p>
-                    </div>
-                    <div class="col-lg-4 col-md-8">
-                        <button class="btn btn-primary btnContact">ENVIAR</button>
-                    </div>
-                </div>
+                </form>
 
             </div>
 
@@ -408,6 +410,8 @@ var docRefSec_in_item = db.collection('interna').doc(saveID).collection("items")
         docRefFooter.get().then(function(doc){
           if(doc.exists)
           {
+              $("#link_fb").attr("href", doc.data().link_fb)
+              $("#link_in").attr("href", doc.data().link_in)
             $("#foot_phone").text(doc.data().phone)
             $("#foot_address").text(doc.data().address)
             $("#foot_mail").text(doc.data().email)

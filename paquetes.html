@@ -204,24 +204,27 @@
 
         <div class="container" id="section4">
             <div class="contactBox">
+
+
                 <p class="titleContact">CONTACTO</p>
 
-                <p class="bodyContact">¡Hola! Mi nombre es<input type="text" placeholder="(Tu nombre)">,<input type="text" placeholder="(Tu apellido)"> me puedes contactar en <input type="text" placeholder="(Tu correo)"> o llamar al <input type="text" placeholder="(Tu teléfono)"> me gustaría recibir más información acerca de sus planes. </p>
+                <form action="php/sendmail.php" method="POST" id="emailForm">
+                    <p class="bodyContact">¡Hola! Mi nombre es<input type="text" placeholder="(Tu nombre)" name="nameInput" id="nameInput" value="">,<input name="lastnameInput" id="lastnameInput" value="" type="text" placeholder="(Tu apellido)"> me puedes contactar en <input name="emailInput" id="emailInput" value="" type="text" placeholder="(Tu correo)"> o llamar al <input name="telInput" id="telInput" value="" type="text" placeholder="(Tu teléfono)"> me gustaría recibir más información acerca de sus planes. </p>
 
-                <div class="row contactBottom justify-content-center">
-
-                    <div class="col-lg-4 col-md-8 d-none d-sm-block">
-                        <img src="img/ico_contact.png">
+                    <div class="row contactBottom justify-content-center">
+                        <div class="col-lg-4 col-md-8 d-none d-sm-block">
+                            <img src="img/ico_contact.png">
+                        </div>
+                        <div class="col-lg-4 col-md-8">
+                            <p>P.S. <input type="text" placeholder="(Comentario adicional)"></p>
+                            <p class="policyText">Acepto la pólitica de protección de datos</p>
+                        </div>
+                        <div class="col-lg-4 col-md-8">
+                            <input class="btn btn-primary btnContact" type="submit" id="submitBtn" value="ENVIAR" />
+                            <!--button class="btn btn-primary btnContact">ENVIAR</button-->
+                        </div>
                     </div>
-                    <div class="col-lg-4 col-md-8">
-                        <p>P.S. <input type="text" placeholder="(Comentario adicional)"></p>
-                        <p class="policyText">Acepto la pólitica de protección de datos</p>
-                    </div>
-                    <div class="col-lg-4 col-md-8">
-                        <button class="btn btn-primary btnContact">ENVIAR</button>
-                    </div>
-                </div>
-
+                </form>
             </div>
 
 
@@ -319,6 +322,120 @@ var docRefReg = db.collection('paquetes').doc("info")
 //var docRefSec_in_dest = db.collection('interna').doc(saveID).collection("items_dest")
 //var docRefSec_in_item = db.collection('interna').doc(saveID).collection("items")
 
+
+//load carrousel
+var _justOnce = true
+var _justOnce2 = true
+var times = 0
+var numC = 0
+var _img1temp=""
+var _img2temp=""
+let docs = []
+
+function loadCarrousel(doc, i)
+{
+    var _div
+    var _name = doc[i].data().title
+    var _country = doc[i].data().country
+    var _price = doc[i].data().price
+    var _link = doc[i].data().link
+    var _date = doc[i].data().date
+    var _days = doc[i].data().days
+    var _includes = doc[i].data().includes
+    var _copy = doc[i].data().copy
+
+    var storageRefSec1 = firebase.storage().ref("paquetes");
+    storageRefSec1.child(doc[i].data().img1).getDownloadURL()
+        .then(function(url)
+        {
+            _img1temp = url
+            storageRefSec1.child(doc[i].data().img2).getDownloadURL()
+                .then(function(url)
+                {
+                    _img2temp = url
+
+                    var myRow = '<div class="row mb-5">'+
+
+
+                        '<div class="col-12 ">'+
+                        '<ul class="list-inline containerPack_title">'+
+                        '<li>'+_name+'</li>'+
+                        '<li class="textGold">'+_country+'</li>'+
+                        '</div>'+
+
+                        '<div class="item_pack">'+
+                        '<img class="item_img" src="'+_img1temp+'" />'+
+                        '<div class="row ">'+
+                        '<div class="col-3 ">'+
+                        '<img class="item_img2" src="'+_img2temp+'" />'+
+                        '</div>'+
+                        '<div class="col-5 text_pack_include">'+
+                        '<p>INCLUYE</p>'+
+                        '<p>'+_includes+'</p>'+
+                        '</div>'+
+                        '<div class="col-4 text_pack_price">'+
+                        '<p class="price_txt">'+_price+'</p>'+
+                        '<p>'+_days+'</p>'+
+                        '<p>'+_date+'</p>'+
+                        '<div class="btn_infoPack">'+
+                        '<p>SOLICITAR INFO</p>'+
+                        '</div>'+
+
+                        '</div>'+
+                        '</div>'+
+                        '<div class="row ">'+
+
+                        '<div >'+
+                        '<p class="bodyText">'+_copy+'</p>'+
+                        '</div>'+
+                        '</div>'+
+
+                        '</div>'+
+
+
+                        '</div>'
+
+                    if(_justOnce)
+                    {
+                        if(_justOnce2)
+                        {
+                            _div = '<div class="actives carousel-item active">'+'</div>'
+                            _justOnce2 = false
+                            $('#mainCarrousel').append(_div)
+                        }
+
+                        if(times==2)
+                            _justOnce = false
+                        $('.actives').append(myRow)
+                    }
+                    else
+                    {
+                        if(!_justOnce2)
+                        {
+                            _div = '<div class="noactive carousel-item">'+'</div>'
+                            $('#mainCarrousel').append(_div)
+                            _justOnce2 = true
+                        }
+                        if(times==1)
+                            _justOnce2 = false
+                        $('.noactive').append(myRow)
+                    }
+
+                    times++
+                    times%=3
+
+
+                    numC++
+                    loadCarrousel(docs, numC)
+
+                    console.log(_div)
+
+                })
+        })
+}
+
+
+
     $(function()
     {
       //load
@@ -329,6 +446,10 @@ var docRefReg = db.collection('paquetes').doc("info")
         docRefFooter.get().then(function(doc){
           if(doc.exists)
           {
+              $("#link_fb").attr("href", doc.data().link_fb)
+              $("#link_in").attr("href", doc.data().link_in)
+              //$("#link_tw").attr("href", doc.data().link_tw)
+
             $("#foot_phone").text(doc.data().phone)
             $("#foot_address").text(doc.data().address)
             $("#foot_mail").text(doc.data().email)
@@ -398,14 +519,10 @@ var docRefReg = db.collection('paquetes').doc("info")
           }
         })
 
-        //load carrousel
-        var _justOnce = true
-        var _justOnce2 = true
-        var times = 0
-        var _img1temp=""
-        var _img2temp=""
+
         docRefReg.collection("paquetes_info").get().then(function(querySnapshot)
         {
+
 
             querySnapshot.forEach(function(doc)
             {
@@ -413,7 +530,7 @@ var docRefReg = db.collection('paquetes').doc("info")
                 console.log(doc.id, " => ", doc.data());
 
 
-                var _div
+                //var _div
                 var _name = doc.data().title
                 var _country = doc.data().country
                 var _price = doc.data().price
@@ -425,92 +542,9 @@ var docRefReg = db.collection('paquetes').doc("info")
 
 
                 console.log("doc.data().title",doc.data().title)
-
-                var storageRefSec1 = firebase.storage().ref("paquetes");
-                storageRefSec1.child(doc.data().img1).getDownloadURL()
-                    .then(function(url) {
-                      _img1temp = url
-                      storageRefSec1.child(doc.data().img2).getDownloadURL()
-                      .then(function(url) {
-                        _img2temp = url
-
-                        var myRow = '<div class="row mb-5">'+
-
-
-                            '<div class="col-12 ">'+
-                              '<ul class="list-inline containerPack_title">'+
-                                '<li>'+_name+'</li>'+
-                                '<li class="textGold">'+_country+'</li>'+
-                              '</div>'+
-
-                              '<div class="item_pack">'+
-                                '<img class="item_img" src="'+_img1temp+'" />'+
-                                '<div class="row ">'+
-                                  '<div class="col-3 ">'+
-                                    '<img class="item_img2" src="'+_img2temp+'" />'+
-                                  '</div>'+
-                                  '<div class="col-5 text_pack_include">'+
-                                    '<p>INCLUYE</p>'+
-                                    '<p>'+_includes+'</p>'+
-                                  '</div>'+
-                                  '<div class="col-4 text_pack_price">'+
-                                    '<p class="price_txt">'+_price+'</p>'+
-                                    '<p>'+_days+'</p>'+
-                                    '<p>'+_date+'</p>'+
-                                    '<div class="btn_infoPack">'+
-                                      '<p>SOLICITAR INFO</p>'+
-                                    '</div>'+
-
-                                  '</div>'+
-                                '</div>'+
-                                '<div class="row ">'+
-
-                                  '<div >'+
-                                    '<p class="bodyText">'+_copy+'</p>'+
-                                  '</div>'+
-                                '</div>'+
-
-                              '</div>'+
-
-
-                        '</div>'
-
-                        if(_justOnce)
-                        {
-                          if(_justOnce2)
-                          {
-                            _div = '<div class="actives carousel-item active">'+'</div>'
-                            _justOnce2 = false
-                            $('#mainCarrousel').append(_div)
-                          }
-
-                          if(times==2)
-                            _justOnce = false
-                          $('.actives').append(myRow)
-                        }
-                        else
-                        {
-                          if(!_justOnce2)
-                          {
-                            _div = '<div class="noactive carousel-item">'+'</div>'
-                            $('#mainCarrousel').append(_div)
-                            _justOnce2 = true
-                          }
-                          if(times==2)
-                            _justOnce2 = false
-                          $('.noactive').append(myRow)
-                        }
-
-                        times++
-                        times%=3
-
-
-
-                        //console.log(_div)
-
-                })
-                })
+                docs.push(doc)
             });
+                loadCarrousel(docs, numC)
         });
 
 

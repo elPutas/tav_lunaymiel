@@ -215,7 +215,7 @@
                             <div class="container">
 
 
-
+                                bodyContact
 
                             </div>
                             <!--/.Controls-->
@@ -223,7 +223,13 @@
                         <!--/.Carousel Wrapper-->
                     </div>
                 </div>
+
+            <div id="section4_help" class="row justify-content-center">
+                <a href="pdf/catalogo.pdf" target="_blank" class="btn btn-primary btnSoon">DESCARGAR CATÁLOGO</a>
+            </div>
         </div>
+
+
     </div>
     </div>
 
@@ -239,9 +245,7 @@
 
         </div>
 
-        <div id="section4_help" class="row justify-content-center">
-            <button  class="btn btn-primary btnSoon" disabled>PRÓXIMAMENTE</button>
-        </div>
+
     </div>
 
     <br>
@@ -255,21 +259,33 @@
         <div class="contactBox">
             <p id="section4" class="titleContact">CONTACTO</p>
 
-            <p class="bodyContact">¡Hola! Mi nombre es<input type="text" placeholder="(Tu nombre)">,<input type="text" placeholder="(Tu apellido)"> me puedes contactar en <input type="text" placeholder="(Tu correo)"> o llamar al <input type="text" placeholder="(Tu teléfono)"> me gustaría recibir más información acerca de sus planes. </p>
 
-            <div class="row contactBottom justify-content-center">
+            <form action="php/sendmail.php" method="POST" id="emailForm">
+                <p class="bodyContact">¡Hola! Mi nombre es
+                    <input type="text" name="nameInput" id="nameInput" placeholder="(Tu nombre)">,
+                    <input type="text" name="lastnameInput" id="lastnameInput" placeholder="(Tu apellido)"> me puedes contactar en
+                    <input type="text" name="emailInput" id="emailInput" placeholder="(Tu correo)"> o llamar al
+                    <input type="text" name="phoneInput" id="phoneInput" placeholder="(Tu teléfono)"> me gustaría recibir más información acerca de sus planes. </p>
 
-                <div class="col-lg-4 col-md-8 d-none d-sm-block">
-                    <img src="img/ico_contact.png">
+
+                <div class="row contactBottom justify-content-center">
+
+                    <div class="col-lg-4 col-md-8 d-none d-sm-block">
+                        <img src="img/ico_contact.png">
+                    </div>
+                    <div class="col-lg-4 col-md-8">
+                        <p>P.S.
+                            <input name="psInput" id="psInput" type="text" placeholder="(Comentario adicional)">
+                        </p>
+                        <p class="policyText">Acepto la pólitica de protección de datos</p>
+                    </div>
+                    <div class="col-lg-4 col-md-8">
+                        <input class="btn btn-primary btnContact" type="submit" id="submitEmail" value="ENVIAR" />
+
+                    </div>
                 </div>
-                <div class="col-lg-4 col-md-8">
-                    <p>P.S. <input type="text" placeholder="(Comentario adicional)"></p>
-                    <p class="policyText">Acepto la pólitica de protección de datos</p>
-                </div>
-                <div class="col-lg-4 col-md-8">
-                    <button class="btn btn-primary btnContact">ENVIAR</button>
-                </div>
-            </div>
+
+            </form>
 
         </div>
 
@@ -686,6 +702,9 @@ var numToshow
         docRefFooter.get().then(function(doc){
           if(doc.exists)
           {
+              $("#link_fb").attr("href", doc.data().link_fb)
+              $("#link_in").attr("href", doc.data().link_in)
+
             $("#foot_phone").text(doc.data().phone)
             $("#foot_address").text(doc.data().address)
             $("#foot_mail").text(doc.data().email)
